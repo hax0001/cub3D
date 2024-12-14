@@ -6,7 +6,7 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/13 14:29:15 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:11:59 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define FOV 60 // field of vew
 # define R_SPEED 0.045 // rottion speed
 # define P_SPEED 4 //player speed
+
 
 typedef struct s_player
 {
@@ -55,17 +56,20 @@ typedef struct s_data
     int     h_map; // hight map
 } t_data ;
 
-typedef struct s_mlx
+typedef struct s_global
 {
     void    *mlx_p; // mlx pointer
     void    *mlx_image; // mlx image pointer
+    t_list  *gar_co; // head od list of gabedge collector
     t_data  *data; // pointer to data struct
     t_ray   *ray; // pointer to ray struct
     t_player    *player; // ponter to player struct
-} t_mlx ;
+} t_global ;
 
 
-static t_mlx    **get_heap(void);
+extern t_global    *g_global; // global varible to acces t_mlx data struct
+
+
 void	*ft_malloc(size_t size);
 void	ft_free_all(void);
 

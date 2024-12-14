@@ -13,6 +13,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRCS =  get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 		gar_co/gar_co.c \
+		cub3d.c \
 
 OBJS = $(SRCS:.c=.o)
 
