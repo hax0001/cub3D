@@ -6,7 +6,7 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/14 18:11:59 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:30:36 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include "collors.h"
 
 # define S_W 1900 // wndow width
 # define S_H 1000 // window height

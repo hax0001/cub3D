@@ -22,13 +22,22 @@ OBJS = $(SRCS:.c=.o)
 #                                 MAKE RULES                                   #
 # **************************************************************************** #
 
-all: $(LIBFT) $(NAME)
+all: display $(LIBFT) $(NAME)
 
+display:
+	@echo $(B)
+	@echo "\033[1;31m                       _|         _|_|_|     _|_|_|  \033[0m"
+	@echo "\033[1;31m   _|_|_|   _|    _|   _|_|_|           _|   _|    _|\033[0m"
+	@echo "\033[1;33m _|         _|    _|   _|    _|     _|_|     _|    _|\033[0m"
+	@echo "\033[1;33m _|         _|    _|   _|    _|         _|   _|    _|\033[0m"
+	@echo "\033[1;34m   _|_|_|     _|_|_|   _|_|_|     _|_|_|     _|_|_|  \033[0m"
+	@echo $(X)
+	
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	echo "COLOR_MAGENTA $(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) COLOR_WHITE"
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
