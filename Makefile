@@ -6,6 +6,7 @@ NAME = cub3d
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror 
+MLX = libmlx_Linux.a  -lXext -lX11 -lm -lbsd
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -13,7 +14,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRCS =  get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 		gar_co/gar_co.c \
-		cub3d.c \
+		main.c \
+		parse/parse_map.c \
+		error/error.c \
+		start_game/cub3d.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -37,12 +41,12 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS)
-	echo "COLOR_MAGENTA $(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) COLOR_WHITE"
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
+clean: 
 	make clean -C $(LIBFT_DIR)
 	rm -f $(OBJS)
 

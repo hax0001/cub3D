@@ -6,18 +6,27 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:43:43 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/14 18:12:47 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:17:59 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
 
+t_global **get_heap(void)
+{
+	static t_global *global;
+
+	return (&global);
+}
 
 void	ft_free_all(void)
-{
-	t_list	*head;
 
-	head = g_global->gar_co;
+{
+	t_global	*global;
+	t_list		*head;
+
+	global = *get_heap();
+	head = global->gar_co;
 	if (head == NULL)
 		free(head);
 	ft_lstclear(&head, free);
@@ -25,25 +34,21 @@ void	ft_free_all(void)
 
 void	*ft_malloc(size_t size)
 {
-	t_list	*head;
-	t_list	*tmp;
-	void	*heap_block;
+	t_global	*global;
+	t_list		*head;
+	t_list		*tmp;
+	void		*heap_block;
 
-	head = g_global->gar_co;
+
+	global = *get_heap();
+	head = global->gar_co;
+	    printf(" \n map --------------------- \n");
 	heap_block = malloc(size);
 	if (!heap_block)
-	{
-		ft_free_all();
-		perror("ft_malloc() failure!");
-		exit(EXIT_FAILURE);
-	}
+		ft_error(ERR_MEMORY_ALLOCATION);
 	tmp = ft_lstnew(heap_block);
 	if (!tmp)
-	{
-		ft_free_all();
-		perror("ft_malloc() failure!");
-		exit(EXIT_FAILURE);
-	}
+		ft_error(ERR_MEMORY_ALLOCATION);
 	ft_lstadd_back(&head, tmp);
 	return (heap_block);
 }
