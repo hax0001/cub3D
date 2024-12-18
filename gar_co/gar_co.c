@@ -6,7 +6,7 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:43:43 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/17 13:17:59 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:23:06 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	*ft_malloc(size_t size)
 
 	global = *get_heap();
 	head = global->gar_co;
-	    printf(" \n map --------------------- \n");
 	heap_block = malloc(size);
 	if (!heap_block)
 		ft_error(ERR_MEMORY_ALLOCATION);

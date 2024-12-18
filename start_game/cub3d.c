@@ -6,11 +6,13 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/17 13:06:45 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:49:13 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
+
+
 
 void    ft_exit(void)
 {
@@ -26,7 +28,8 @@ int    play(void *info)
     t_global    *global;
     
     global = (t_global *)info;
-    mlx_destroy_image(global->mlx_p, global->mlx_image);
+    //printf("cub3d\n");
+    //mlx_destroy_image(global->mlx_p, global->mlx_image);
     global->mlx_image = mlx_new_image(global->mlx_p, S_W, S_H);
     mlx_put_image_to_window(global->mlx_p, global->mlx_w, global->mlx_image, 0, 0);
     return (0);
@@ -58,9 +61,11 @@ void    cub3d(void)
     if(!global->mlx_p)
         ft_error(ERR_MLX_INIT_FAILED);
     global->mlx_w = mlx_new_window(global->mlx_p, S_W, S_H, "cub3d");
+    if(!global->mlx_w)
+        ft_error(ERR_MLX_INIT_FAILED);
     init_player();
     mlx_loop_hook(global->mlx_p, play, global);
     mlx_loop(global->mlx_p);
     ft_exit();
-    
+
 }
