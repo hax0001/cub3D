@@ -6,7 +6,7 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:46:36 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/10 14:08:38 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:24:50 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int wall_hit(float x, float y, t_global *global)
     map_y = floor(y / TILE_SIZE);
     if (map_y >= global->data->h_map || map_x >= global->data->w_map)
         return (0);
-    if (global->data->map[map_y] && map_x <= strlen(global->data->map[map_y]))
+    if (global->data->map[map_y] && map_x <= (int)ft_strlen(global->data->map[map_y]))
         if (global->data->map[map_y][map_x] == '1')
             return (0);
     return (1);
@@ -150,7 +150,8 @@ void cast_rays()
             global->ray->ray_f = 1;
             global->ray->distance = horiz_dist;
         }
-        render_wall(global, ray);
+        printf("distance 1 = %f\n",global->ray->distance);
+        //render_wall(global, ray);
         global->ray->angle += global->player->fov / S_W;
         ray++;
     }

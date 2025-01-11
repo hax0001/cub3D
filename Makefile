@@ -18,6 +18,7 @@ SRCS =  get_next_line/get_next_line.c \
 		parse/parse_map.c \
 		error/error.c \
 		start_game/cub3d.c \
+		ray_cast/cast_rays.c \
 
 OBJS = $(SRCS:.c=.o)
 

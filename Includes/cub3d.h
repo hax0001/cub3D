@@ -6,7 +6,7 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/17 12:53:08 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:18:41 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ typedef struct s_global
 } t_global ;
 
 
-extern t_global    *g_global; // global varible to acces t_mlx data struct
-
 //******************gar_co && memory******************* */
 void	*ft_malloc(size_t size);
 void	ft_free_all(void);
@@ -97,6 +95,6 @@ void    cub3d(void);
 void    init_player(void);
 void ft_error(char *error_type);
 
-
+void cast_rays();
 
 #endif
