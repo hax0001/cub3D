@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/11 22:39:38 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/11 22:52:39 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool        write_map(char ***maps, char *FileName) // this fct read the file on
     if (fd == -1 && str1 == NULL)
     {
         printf("Error\nFatal Error While Reading The File\n");
-        return false;
+        return (false);
     }
 	while (str1)
 	{
