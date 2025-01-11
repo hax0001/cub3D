@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/11 17:18:41 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/11 20:44:03 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <math.h>
 # include "collors.h"
+
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
