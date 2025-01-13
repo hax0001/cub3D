@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/12 21:34:07 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:24:48 by aymane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_global **get_heap(void);
 //******************parse****************************** */
 bool    parses_map(t_data *data,char *FileName);
 bool    FileName_check( int argc, char **argv);
+void print_data(t_data *data);
 //***************************************************** */
 
 void    cub3d(void);

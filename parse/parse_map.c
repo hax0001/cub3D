@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/13 14:44:41 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:51:23 by aymane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void        skipper(char *line, int *c_index, int *end_index)
     *c_index = 0;
     *end_index = 0;
     index = 0;
+    if (!line)
+        return;
     while (line[index] && line[index] == ' ')
     {
         (*c_index)++;
@@ -66,17 +68,17 @@ bool    id_names(t_data *data)
     int    end_index;
 
     skipper(data->no, &c_index, &end_index);
-    if (!ft_strncmp(data->no, "NO", end_index))
-        return ( printf("%s\n", data->no + end_index),false);
+    if (ft_strncmp(data->no, "NO", end_index) != 0)
+        return ( false);
     skipper(data->ea, &c_index, &end_index);
-    if (!ft_strncmp(data->ea, "EA", end_index))
-        return ( printf("EA\n"),false);
+    if (ft_strncmp(data->ea, "EA", end_index) != 0)
+        return ( false);
     skipper(data->we, &c_index, &end_index);
-    if (!ft_strncmp(data->we, "WE", end_index))
-        return ( printf("WE\n"),false);
-    skipper(data->so, &c_index, &end_index);    
-    if (!ft_strncmp(data->so, "SO", end_index))
-        return ( printf("SO\n"),false);
+    if (ft_strncmp(data->we, "WE", end_index) != 0)
+        return ( false);
+    skipper(data->so, &c_index, &end_index);
+    if (ft_strncmp(data->so, "SO", end_index) != 0)
+        return ( false);
     return (true);
 }
 
@@ -110,7 +112,7 @@ bool    type_id_storer(t_data *data, char **map)
     }
     if (type_id_parse(data) == false)
     {
-        printf("Error\nInvalide Textures\n");
+        printf("Error\nInvalid Textures\n");
         return (false);
     }
     return (true);
@@ -158,6 +160,7 @@ bool    parses_map(t_data *data,char *FileName) // this fct will check if we hav
         return (false);
     if (map_checker(data, map) == false)
         return (false);
+    print_data(data);
 
     return (true);
 }
