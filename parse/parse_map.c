@@ -6,7 +6,7 @@
 /*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/13 18:51:23 by aymane           ###   ########.fr       */
+/*   Updated: 2025/01/13 19:09:28 by aymane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,13 @@ bool    type_id_storer(t_data *data, char **map)
     return (true);
 }
 
+bool    coloe_parse(t_data *data)
+{
+    
+
+    return (true);
+}
+
 bool    color_storer(t_data *data, char **map)
 {
     int     v_index;
@@ -133,6 +140,11 @@ bool    color_storer(t_data *data, char **map)
         if (ft_strnstr(map[v_index] + c_index, "F", end_index))
             data->f = ft_strdup(map[v_index] + c_index);
         v_index++;
+    }
+    if (color_parse(data) == false)
+    {
+        printf("Error\nInvalid Textures\n");
+        return (false);
     }
     return (true);
 }
