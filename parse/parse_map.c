@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/13 19:09:28 by aymane           ###   ########.fr       */
+/*   Updated: 2025/01/14 13:05:27 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void        skipper(char *line, int *c_index, int *end_index)
         (*c_index)++;
         index++;    
     }
-    while (line[index] && ft_isalpha(line[index]) )
+    while (line[index] && ft_isprint(line[index]) && line[index] != ' ')
         index++;
     (*end_index) = index;
 }
 
-bool    id_names(t_data *data)
+bool    id_type_parse(t_data *data)
 {
     int    c_index;
     int    end_index;
@@ -84,8 +84,7 @@ bool    id_names(t_data *data)
 
 bool    type_id_parse(t_data *data)
 {
-
-    if (id_names(data) == false)
+    if (id_type_parse(data) == false)
         return (false);
     return (true);
 }
@@ -118,9 +117,24 @@ bool    type_id_storer(t_data *data, char **map)
     return (true);
 }
 
-bool    coloe_parse(t_data *data)
+bool    id_color_parse(t_data *data)
 {
-    
+    int    c_index;
+    int    end_index;
+
+    skipper(data->f, &c_index, &end_index);
+    if (ft_strncmp(data->f, "F", end_index) != 0)
+        return ( false);
+    skipper(data->c, &c_index, &end_index);
+    if (ft_strncmp(data->c, "C", end_index) != 0)
+        return ( false);
+    return (true);
+}
+
+bool    color_parse(t_data *data)
+{
+    if (id_color_parse(data) == false)
+        return (false);    
 
     return (true);
 }
@@ -143,7 +157,7 @@ bool    color_storer(t_data *data, char **map)
     }
     if (color_parse(data) == false)
     {
-        printf("Error\nInvalid Textures\n");
+        printf("Error\nInvalid Colors\n");
         return (false);
     }
     return (true);
