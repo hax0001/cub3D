@@ -6,13 +6,26 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/14 13:05:27 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/14 23:52:29 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
 
+void    ft_free_array(char **array)
+{
+    int     i;
 
+    i = 0;
+    if (!array)
+        return ;
+    while (array[i])
+    {
+        free(array[i]);
+        i++;
+    }
+    free(array);
+}
 
 bool        write_map(char ***maps, char *FileName) // this fct read the file only and return it in a double array
 {
@@ -82,9 +95,65 @@ bool    id_type_parse(t_data *data)
     return (true);
 }
 
+int     ft_arg_count(char **texture)
+{
+    int     count;
+
+    count = 0;
+    while (texture[count])
+        count++;    
+    return (count);
+}
+
+bool    file_check(char     *file_name)
+{
+    int     i;
+    int     fd;
+
+    i = 0;
+    fd = open(file_name, O_RDONLY);
+    if (fd == -1)
+        return (false);
+    close (fd);
+    while (file_name[i])
+        i++;
+    if (ft_strncmp(file_name + i - 4, ".xpm", i))
+        return (false);
+    return (true);
+}
+
+bool    texture_parse(t_data *data)
+{
+    char    **temp;
+    char    *textures[7];
+    int     i;
+
+    textures[0] = data->no;
+    textures[1] = data->so;
+    textures[2] = data->we;
+    textures[3] = data->ea;
+    textures[4] = data->f;
+    textures[5] = data->c;
+    textures[6] = NULL;
+    i = 0;
+    while (textures[i])
+    {
+        temp = ft_split(textures[i], ' ');
+        if (ft_arg_count(temp) != 2)
+            return (ft_free_array(temp), false);
+        if (file_check(temp[1]) == false)
+            return (ft_free_array(temp), false);
+        ft_free_array(temp);
+        i++;
+    }
+    return (true);
+}
+
 bool    type_id_parse(t_data *data)
 {
     if (id_type_parse(data) == false)
+        return (false);
+    if (texture_parse(data) == false)
         return (false);
     return (true);
 }
@@ -131,11 +200,39 @@ bool    id_color_parse(t_data *data)
     return (true);
 }
 
+bool    in_range(char *color)
+{
+    size_t     i;
+
+    i = 0;
+    while (color[i] && ft_isdigit(color[i]) && color[i] == ',')
+        i++;
+    if (i != strlen(color))
+        return (false);    
+    return (true);    
+}
+
+bool    color_range_parse(char *floor_arg, char *ceiling_arg)
+{
+    char    **floor;
+    char    **ceiling;
+
+    floor = ft_split(floor_arg, ' ');
+    ceiling = ft_split(ceiling_arg, ' ');
+
+    if (ft_arg_count(floor)!= 2 && ft_arg_count(ceiling) != 2)
+        return ( false);
+    if (in_range(floor[1]) == true && in_range(ceiling[1]) == true)
+        return ( false);
+    return (true);    
+}
+
 bool    color_parse(t_data *data)
 {
     if (id_color_parse(data) == false)
-        return (false);    
-
+        return (false);
+    if (color_range_parse(data->f, data->c) == false) // rak hnayaaa 
+        return (false);
     return (true);
 }
 

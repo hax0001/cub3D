@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 02:12:28 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/11/20 02:12:36 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/14 23:00:17 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**free_array(char **ptr, int i)
+char	**free_array(char **ptr, int i)
 {
 	while (i >= 0)
 	{

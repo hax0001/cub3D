@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "error.h": "c",
-        "cub3d.h": "c"
+        "cub3d.h": "c",
+        "libft.h": "c"
     }
 }
