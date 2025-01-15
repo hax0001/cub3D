@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/15 23:36:12 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/15 23:42:07 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,19 @@ bool    color_storer(t_data *data, char **map)
     return (true);
 }
 
+bool    map_check(t_data *data, char    **map)
+{
+    
+    (void) data;
+    int i = 0;
+    while (map[i])
+    {
+        printf("%s\n", map[i++]);
+    } 
+    return true;
+
+    
+}
 
 bool    map_checker(t_data *data, char    **map)
 {
@@ -311,9 +324,8 @@ bool    map_checker(t_data *data, char    **map)
         return (false);
     if (color_storer(data, map) == false)
         return (false);
-    // if (map_check(data, map) == false)
-    //     return (false);
-    // printf("%s\n%s\n%s\n%s\n%s\n%s\n",data->no,data->ea,data->so,data->we, data->c, data->f);    
+    if (map_check(data, map) == false)
+        return (false);
     return (true);
 }
 
@@ -327,7 +339,7 @@ bool    parses_map(t_data *data,char *FileName) // this fct will check if we hav
         return (false);
     if (map_checker(data, map) == false)
         return (false);
-    print_data(data);
+    // print_data(data);
 
     return (true);
 }
