@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/13 18:24:48 by aymane           ###   ########.fr       */
+/*   Updated: 2025/01/15 23:19:15 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,19 @@ typedef struct s_ray
 
 typedef struct s_data
 {
-    char    **map; // map in 2d demention
-    char    *no;
-    char    *so;
-    char    *we;
-    char    *ea;
-    char    *f;
-    char    *c;
-    int     x_p_m; // x player position in map
-    int     y_p_m; // y player position in map
-    int     w_map; // width map
-    int     h_map; // hight map
+    char             **map; // map in 2d demention
+    char             *no;
+    char             *so;
+    char             *we;
+    char             *ea;
+    char             *f;
+    char             *c;
+    unsigned int     c_color;
+    unsigned int     f_color;
+    int              x_p_m; // x player position in map
+    int              y_p_m; // y player position in map
+    int              w_map; // width map
+    int              h_map; // hight map
 } t_data ;
 
 typedef struct s_global

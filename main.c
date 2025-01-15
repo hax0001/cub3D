@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:23:38 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/13 18:51:01 by aymane           ###   ########.fr       */
+/*   Updated: 2025/01/15 23:27:09 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void print_data(t_data *data)
         printf("SO: %s\n", data->so);
         printf("WE: %s\n", data->we);
         printf("EA: %s\n", data->ea);
-        printf("F: %s\n", data->f);
-        printf("C: %s\n", data->c);
+        printf("F: %u\n", data->f_color);
+        printf("C: %u\n", data->c_color);
     }
     else
     {

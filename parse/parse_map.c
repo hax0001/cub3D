@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/14 23:52:29 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/15 23:36:12 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,14 +205,54 @@ bool    in_range(char *color)
     size_t     i;
 
     i = 0;
-    while (color[i] && ft_isdigit(color[i]) && color[i] == ',')
+    while (color[i] && (ft_isdigit(color[i]) == true || color[i] == ','))
         i++;
     if (i != strlen(color))
-        return (false);    
+        return (false);
     return (true);    
 }
 
-bool    color_range_parse(char *floor_arg, char *ceiling_arg)
+bool    is_valid_color(char  *color_tmp)
+{
+    int     index;
+    int     convert_color;
+    char    **color;
+    char    *color_num[4];
+
+    index = 0;
+    color = ft_split(color_tmp, ',');
+    if (ft_arg_count(color) != 3 || color_tmp[strlen(color_tmp) - 1] == ',' || color_tmp[0] == ',')
+        return (ft_free_array(color), false);
+    color_num[0] = color[0];
+    color_num[1] = color[1];
+    color_num[2] = color[2];
+    color_num[3] = NULL;
+    while (color_num[index])
+    {
+        convert_color = ft_atoi(color[index++]);
+        if (convert_color >= 0 && convert_color <= 255)
+            continue;
+        return (ft_free_array(color), false);            
+    }
+    return (ft_free_array(color), true);
+}
+
+unsigned int    rgb_to_hex(int r, int g, int b)
+{
+    return (((unsigned char)r << 16) | ((unsigned char)g << 8) | (unsigned char)b);
+}     
+
+void    color_converter(t_data  *data, char *floor_arg, char *ceiling_arg)
+{
+    char    **ceiling;
+    char    **floor;
+
+    ceiling = ft_split(floor_arg, ',');
+    floor   = ft_split(ceiling_arg, ',');
+    data->c_color = rgb_to_hex(ft_atoi(ceiling[0]), ft_atoi(ceiling[1]), ft_atoi(ceiling[2]));
+    data->f_color = rgb_to_hex(ft_atoi(floor[0]), ft_atoi(floor[1]), ft_atoi(floor[2]));
+}
+bool    color_range_parse(t_data    *data, char *floor_arg, char *ceiling_arg)
 {
     char    **floor;
     char    **ceiling;
@@ -220,18 +260,22 @@ bool    color_range_parse(char *floor_arg, char *ceiling_arg)
     floor = ft_split(floor_arg, ' ');
     ceiling = ft_split(ceiling_arg, ' ');
 
-    if (ft_arg_count(floor)!= 2 && ft_arg_count(ceiling) != 2)
-        return ( false);
-    if (in_range(floor[1]) == true && in_range(ceiling[1]) == true)
-        return ( false);
+    if (ft_arg_count(ceiling) != 2 || ft_arg_count(floor)!= 2)
+        return (ft_free_array(ceiling), ft_free_array(floor),false);
+    if (in_range(floor[1]) == false || in_range(ceiling[1]) == false)
+        return (ft_free_array(ceiling), ft_free_array(floor), false);
+    if (is_valid_color(floor[1]) == false || is_valid_color(ceiling[1]) == false)
+        return (ft_free_array(ceiling), ft_free_array(floor), false);
+    color_converter(data, floor[1], ceiling[1]);
     return (true);    
 }
+
 
 bool    color_parse(t_data *data)
 {
     if (id_color_parse(data) == false)
         return (false);
-    if (color_range_parse(data->f, data->c) == false) // rak hnayaaa 
+    if (color_range_parse(data, data->f, data->c) == false)
         return (false);
     return (true);
 }
