@@ -5,7 +5,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+#CFLAGS = -Wall -Wextra -Werror -g
 MLX = libmlx_Linux.a  -lXext -lX11 -lm -lbsd
 
 LIBFT_DIR = ./libft

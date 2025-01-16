@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/16 19:18:58 by aymane           ###   ########.fr       */
+/*   Updated: 2025/01/17 00:02:55 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,11 +358,15 @@ bool    line_char_check(char    *line)
     int     c_index;
 
     c_index = 0;
-    while (ft_strchr)
+    while (line[c_index])
     {
-
+        if (line[c_index] != '1' && line[c_index] != '0' && line[c_index] != ' ' &&
+            line[c_index] != 'N' && line[c_index] != 'W' && line[c_index] != 'S' &&
+            line[c_index] != 'E')
+            return (false);
+        c_index++;
     }
-    
+    return (true);
 
 }
 
@@ -374,10 +378,36 @@ bool    map_characters_check(char   **map)
     while (map[index])
     {
         if (line_char_check(map[index]) == false)
+        {
+            printf("Error\nThe Map Is Invalid\n%s\n",map[index]);
             return (false);
+        }
         index++;
     }
+    return (true);
+}
+
+bool    map_border_check(char **map)
+{   
+    int     v_index;
+    int     c_index;
     
+    c_index = 0;
+    v_index = 0;
+    while (map[v_index])
+    {
+        if (v_index == 0 || map[v_index + 1] == NULL)
+        {
+            printf("haannaniiii\n");
+            while (map[v_index][c_index])
+            {
+                if ((map[v_index][c_index] != '1') || ((map[v_index][c_index]) != ' '))
+                    return (printf("%s\n", map[v_index]),false);
+                c_index++;
+            }
+        }
+        v_index++;
+    }
     return (true);
 }
 
@@ -386,12 +416,9 @@ bool    map_check(t_data *data, char    **map)
     map_writer(data, map);
     if (map_characters_check(data->map) == false)
         return (false);
-    if (map_border_check(data) == false)
-        return (false);
-    
-    
-    
-        return true;
+    if (map_border_check(data->map) == false)
+        return (printf("error in border\n"),false);
+    return true;
 }
 
 bool    map_checker(t_data *data, char    **map)
@@ -416,7 +443,7 @@ bool    parses_map(t_data *data,char *FileName) // this fct will check if we hav
         return (false);
     if (map_checker(data, map) == false)
         return (false);
-    // print_data(data);
+    print_data(data);
 
     return (true);
 }
