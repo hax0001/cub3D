@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/15 23:42:07 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/16 14:29:55 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,18 +304,64 @@ bool    color_storer(t_data *data, char **map)
     return (true);
 }
 
+bool    is_white_space(char     *line)
+{
+    size_t     i;
+
+    i = 0;
+    while (line[i])
+    {
+        if (line[i] != ' ')
+            return (false);
+        i++;
+    }
+    return (true);    
+}
+
+bool    map_end(char    *line)
+{
+    char    **line_splite;
+
+    line_splite = ft_split(line, ' ');
+    if (!strcmp(line_splite[0] , "F")  || !strcmp(line_splite[0] , "C")   ||
+        !strcmp(line_splite[0] , "SO") || !strcmp(line_splite[0] , "NO")  ||
+        !strcmp(line_splite[0] , "WE") || !strcmp(line_splite[0] , "EA")   )
+        return (true);
+    return (false);
+}
+
+void    map_writer(t_data *data, char **map)
+{
+    int     index;
+ 
+    index = 0;
+    while (map[index])
+        index++;
+    index--;
+    while (map[index])
+    {
+        if (is_white_space(map[index]) == true || map_end(map[index]) == true)
+            break;
+        index--;
+    }
+    index++;
+    data->map = (char **)ft_malloc((ft_arg_count(map) - index) * sizeof(char *));
+    
+    
+    
+       
+}
+
+
 bool    map_check(t_data *data, char    **map)
 {
     
-    (void) data;
-    int i = 0;
-    while (map[i])
-    {
-        printf("%s\n", map[i++]);
-    } 
-    return true;
-
+    map_writer(data, map);
     
+    
+    
+    
+        return true;
 }
 
 bool    map_checker(t_data *data, char    **map)
@@ -333,6 +379,7 @@ bool    map_checker(t_data *data, char    **map)
 bool    parses_map(t_data *data,char *FileName) // this fct will check if we have a valid map
 {
     char **map;
+
     data = (t_data *)ft_malloc(sizeof(t_data));
     ft_memset(data, 0, sizeof(t_data));
     if (write_map(&map, FileName) == false)
