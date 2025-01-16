@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:23:38 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/15 23:27:09 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/16 21:24:00 by aymane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ void print_data(t_data *data)
         printf("EA: %s\n", data->ea);
         printf("F: %u\n", data->f_color);
         printf("C: %u\n", data->c_color);
+        int i = 0;
+        printf("<------------MAP--------->\n");
+        int     i = 0;  
+        
+        while (data->map[i])
+        {
+            printf("%s\n", data->map[i++]);
+        }
+        
     }
     else
     {

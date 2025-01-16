@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aymane <aymane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/16 14:29:55 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/16 19:18:58 by aymane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,7 +333,9 @@ bool    map_end(char    *line)
 void    map_writer(t_data *data, char **map)
 {
     int     index;
- 
+    int     map_index;
+
+    map_index = 0;
     index = 0;
     while (map[index])
         index++;
@@ -345,19 +347,47 @@ void    map_writer(t_data *data, char **map)
         index--;
     }
     index++;
-    data->map = (char **)ft_malloc((ft_arg_count(map) - index) * sizeof(char *));
-    
-    
-    
-       
+    data->map = (char **)ft_malloc((ft_arg_count(map) - index) * sizeof(char **));
+    data->map[ft_arg_count(map) - index ] = NULL;
+    while (map[index])
+        data->map[map_index++] = ft_strdup(map[index++]);
 }
 
+bool    line_char_check(char    *line)
+{
+    int     c_index;
+
+    c_index = 0;
+    while (ft_strchr)
+    {
+
+    }
+    
+
+}
+
+bool    map_characters_check(char   **map)
+{
+    int     index;
+    
+    index = 0;
+    while (map[index])
+    {
+        if (line_char_check(map[index]) == false)
+            return (false);
+        index++;
+    }
+    
+    return (true);
+}
 
 bool    map_check(t_data *data, char    **map)
 {
-    
     map_writer(data, map);
-    
+    if (map_characters_check(data->map) == false)
+        return (false);
+    if (map_border_check(data) == false)
+        return (false);
     
     
     
