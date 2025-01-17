@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/17 00:02:55 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/17 13:53:05 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,25 +387,50 @@ bool    map_characters_check(char   **map)
     return (true);
 }
 
+bool    all_one(char    *line)
+{
+    int     c_index;
+
+    c_index = 0;
+    printf("<--%s-->\n",line);
+    while (line[c_index])
+    {
+        if (line[c_index] != '1' && line[c_index] != ' ')
+            return (false);
+        c_index++;
+    }
+    return (true);
+}
+
+bool    border_check(char   *line)
+{
+    int     c_index;
+
+    c_index = 0;
+    while (line[c_index])
+    {
+        if (c_index == 0)
+        {
+            if (line[c_index] != '1')
+        }
+    }
+    
+}
+
 bool    map_border_check(char **map)
 {   
     int     v_index;
-    int     c_index;
     
-    c_index = 0;
     v_index = 0;
     while (map[v_index])
     {
         if (v_index == 0 || map[v_index + 1] == NULL)
         {
-            printf("haannaniiii\n");
-            while (map[v_index][c_index])
-            {
-                if ((map[v_index][c_index] != '1') || ((map[v_index][c_index]) != ' '))
-                    return (printf("%s\n", map[v_index]),false);
-                c_index++;
-            }
+            if (all_one(map[v_index]) == false)
+                return (false);   
         }
+        else if (border_check(map[v_index]) == false)
+            return (false);
         v_index++;
     }
     return (true);
