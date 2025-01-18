@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/17 13:53:05 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/18 18:52:02 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,7 +392,6 @@ bool    all_one(char    *line)
     int     c_index;
 
     c_index = 0;
-    printf("<--%s-->\n",line);
     while (line[c_index])
     {
         if (line[c_index] != '1' && line[c_index] != ' ')
@@ -404,17 +403,20 @@ bool    all_one(char    *line)
 
 bool    border_check(char   *line)
 {
-    int     c_index;
+    int     v_index;
+    char    **line_split;
 
-    c_index = 0;
-    while (line[c_index])
+    v_index = 0;
+    line_split = ft_split(line, ' ');
+    while (line_split[v_index])
     {
-        if (c_index == 0)
-        {
-            if (line[c_index] != '1')
-        }
+        if (line_split[v_index][0] != '1')
+            return ( ft_free_array(line_split), false);
+        if (line_split[v_index][strlen(line_split[v_index]) - 1] != '1')
+            return ( ft_free_array(line_split), false);
+        v_index++;
     }
-    
+    return ( ft_free_array(line_split), true);    
 }
 
 bool    map_border_check(char **map)
@@ -435,6 +437,23 @@ bool    map_border_check(char **map)
     }
     return (true);
 }
+bool    map_border_updown(char  **map)
+{
+    int     v_index;
+    int     c_index;
+
+    c_index = 0;
+    v_index = 1;
+    while (map[v_index])
+    {
+        
+        if (map[v_index][c_index] == '1')
+
+        v_index++;   
+    }
+    
+
+}
 
 bool    map_check(t_data *data, char    **map)
 {
@@ -443,6 +462,8 @@ bool    map_check(t_data *data, char    **map)
         return (false);
     if (map_border_check(data->map) == false)
         return (printf("error in border\n"),false);
+    if (map_border_updown(data->map) == false)
+        return (printf("error in border 2\n"),false);
     return true;
 }
 
