@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   collors.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:29:34 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/14 18:29:39 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/11 22:48:35 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 # define COLLORS_H
 
 // Regular Colors
-# define COLOR_BLACK "\033[0;30m"
-# define COLOR_RED "\033[0;31m"
-# define COLOR_GREEN "\033[0;32m"
-# define COLOR_YELLOW "\033[0;33m"
-# define COLOR_BLUE "\033[0;34m"
-# define COLOR_MAGENTA "\033[0;35m"
-# define COLOR_CYAN "\033[0;36m"
-# define COLOR_WHITE "\033[0;37m"
+#define COLOR_RED    0xFF0000
+#define COLOR_GREEN  0x00FF00
+#define COLOR_BLUE   0x0000FF
+#define COLOR_YELLOW 0xFFFF00
+#define COLOR_VERT_RAY   0xFF00FF  // Magenta for vertical rays
+#define COLOR_HORIZ_RAY  0x00FFFF  // Cyan for horizontal rays
 
 // Bold Colors
 # define COLOR_BOLD_BLACK "\033[1;30m"

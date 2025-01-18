@@ -5,7 +5,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror 
 MLX = libmlx_Linux.a  -lXext -lX11 -lm -lbsd
 
 LIBFT_DIR = ./libft
@@ -19,6 +19,8 @@ SRCS =  get_next_line/get_next_line.c \
 		error/error.c \
 		start_game/cub3d.c \
 		ray_cast/cast_rays.c \
+		rendering/render_wall.c \
+		mouvements/mouve.c \
 
 OBJS = $(SRCS:.c=.o)
 
