@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/18 21:47:12 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:15:39 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include <stdbool.h>
 # include "collors.h"
 
 #ifndef M_PI
@@ -65,11 +66,19 @@ typedef struct s_ray
 
 typedef struct s_data
 {
-    char    **map; // map in 2d demention
-    int     x_p_m; // x player position in map
-    int     y_p_m; // y player position in map
-    int     w_map; // width map
-    int     h_map; // hight map
+    char             **map; // map in 2d demention
+    char             *no;
+    char             *so;
+    char             *we;
+    char             *ea;
+    char             *f;
+    char             *c;
+    unsigned int     c_color;
+    unsigned int     f_color;
+    int              x_p_m; // x player position in map
+    int              y_p_m; // y player position in map
+    int              w_map; // width map
+    int              h_map; // hight map
 } t_data ;
 
 typedef struct s_global
@@ -91,7 +100,9 @@ t_global **get_heap(void);
 //***************************************************** */
 
 //******************parse****************************** */
-t_data  *parse_map();
+bool    parses_map(t_data *data,char *FileName);
+bool    FileName_check( int argc, char **argv);
+void print_data(t_data *data);
 //***************************************************** */
 
 void    cub3d(void);

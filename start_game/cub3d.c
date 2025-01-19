@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/18 21:59:13 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/19 18:06:26 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void    init_player(void)
     player->fov = FOV * (M_PI / 180);
 }
 
-void cub3d(void)
+void cub3d(void)// 123,669,567
 {
     t_global *global;
     
@@ -81,3 +81,4 @@ void cub3d(void)
     mlx_loop_hook(global->mlx_p, play, global);
     mlx_loop(global->mlx_p);
 }
+

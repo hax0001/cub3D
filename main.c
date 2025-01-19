@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:23:38 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/18 20:31:43 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:16:10 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int main(int ac, char **av)
 {
     t_global   *global;
 
-    (void)av;
-    (void)ac;
+    if (FileName_check(ac, av) == false)
+        return (2);
     global = (t_global *)malloc(sizeof(t_global)); // this memory shoud freed manually with free function
     ft_memset(global, 0, sizeof(t_global));
     *get_heap() = global;
-    // u shoud parse the argument here {files.cub}
-    global->data = parse_map();
+    if (parses_map(global->data, av[1]) == false)
+        return (2);
     cub3d();
     
     return (0);
