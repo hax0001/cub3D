@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/19 18:06:26 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/19 22:41:29 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ void    init_player(void)
     t_player    *player;
     
     global = *get_heap();
+    
     player = global->player;
     player->x_p = global->data->x_p_m * TILE_SIZE + TILE_SIZE / 2;
     player->y_p = global->data->y_p_m * TILE_SIZE + TILE_SIZE / 2;
-    player->angle = M_PI/2;
+    player->angle = global->data->angle;
     player->fov = FOV * (M_PI / 180);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:18:15 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/18 21:54:45 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/19 22:23:18 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void mouve_player(t_global *global, double move_x, double move_y)
         global->player->y_p = new_y;
     }
 }
+
 
 void	rotate_player(t_global *global, int i)
 {

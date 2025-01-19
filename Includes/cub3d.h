@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/19 21:15:39 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/19 22:39:11 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define TILE_SIZE 30 // size of tile
 # define FOV 60 // field of vew
 # define R_SPEED 0.015 // rottion speed
-# define P_SPEED 2 //player speed
+# define P_SPEED 3 //player speed
 
 # define ERR_INVALID_ARGUMENT      "Invalid argument provided."
 # define ERR_FILE_NOT_FOUND        "File not found."
@@ -73,6 +73,7 @@ typedef struct s_data
     char             *ea;
     char             *f;
     char             *c;
+    int              angle;
     unsigned int     c_color;
     unsigned int     f_color;
     int              x_p_m; // x player position in map
@@ -100,7 +101,7 @@ t_global **get_heap(void);
 //***************************************************** */
 
 //******************parse****************************** */
-bool    parses_map(t_data *data,char *FileName);
+bool    parses_map(t_global **global,t_data *data,char *FileName);
 bool    FileName_check( int argc, char **argv);
 void print_data(t_data *data);
 //***************************************************** */

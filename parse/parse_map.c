@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:26:26 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/19 21:15:59 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/19 22:44:34 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -469,6 +469,36 @@ bool    map_border_updown(char  **map)
     return (true);
 }
 
+void    player_view(t_data *data ,char **map)
+{
+    int     v_index;
+    int     c_index;
+
+    v_index = 1;
+    while (map[v_index])
+    {
+        c_index = 0;
+        while (map[v_index][c_index])
+        {
+            if (player_char(map[v_index][c_index]) == true)
+            {
+                if (map[v_index][c_index] == 'N')
+                    data->angle = M_PI/2;
+                if (map[v_index][c_index] == 'S')
+                    data->angle = (3 * M_PI)/2;
+                if (map[v_index][c_index] == 'W')
+                    data->angle = 2 * M_PI;
+                if (map[v_index][c_index] == 'E')
+                    data->angle = 0;
+                return;
+            }    
+            c_index++;
+        }
+        v_index++;
+    }
+}
+
+
 bool    map_valid_char(char     **map)
 {
     int     v_index;
@@ -544,7 +574,8 @@ bool    map_check(t_data *data, char    **map)
     if (map_border_updown(data->map) == false)
         return (printf("error in border 2\n"),false);
     if (map_valid_char(data->map) == false)
-        return (printf("error in border 3\n"),false);    
+        return (printf("error in border 3\n"),false);
+    player_view(data, data->map);
     x_y_store(data, data->map);
     w_h_store(data, data->map);
     return true;
@@ -563,11 +594,12 @@ bool    map_checker(t_data *data, char    **map)
 
 
 
-bool    parses_map(t_data *data,char *FileName) // this fct will check if we have a valid map
+bool    parses_map(t_global **global,t_data *data,char *FileName) // this fct will check if we have a valid map
 {
     char **map;
 
     data = (t_data *)ft_malloc(sizeof(t_data));
+    (*global)->data = data;
     ft_memset(data, 0, sizeof(t_data));
     if (write_map(&map, FileName) == false)
         return (false);
