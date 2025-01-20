@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:18:15 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/19 22:23:18 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:11:20 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void mouve_player(t_global *global, double move_x, double move_y)
     int new_x;
     int new_y;
     
-    new_x = floor(global->player->x_p + move_x);
-    new_y = floor(global->player->y_p + move_y);
+    new_x = roundf(global->player->x_p + move_x);
+    new_y = roundf(global->player->y_p + move_y);
     map_x = (new_x / TILE_SIZE);
     map_y = (new_y / TILE_SIZE);
     if (map_y < 0 || map_y >= global->data->h_map || 

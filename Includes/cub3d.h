@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/19 22:39:11 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@
 #define M_PI 3.14159265358979323846
 #endif
 
+#define MINIMAP_SIZE 200  // Size of minimap in pixels
+#define MINIMAP_SCALE 0.5 // Scale factor for minimap (1/5 of original size)
+#define MINIMAP_PADDING 20
+
 # define S_W 1900 // wndow width
 # define S_H 1000 // window height
 # define TILE_SIZE 30 // size of tile
 # define FOV 60 // field of vew
-# define R_SPEED 0.015 // rottion speed
-# define P_SPEED 3 //player speed
+# define R_SPEED 0.020 // rottion speed
+# define P_SPEED 4 //player speed
 
 # define ERR_INVALID_ARGUMENT      "Invalid argument provided."
 # define ERR_FILE_NOT_FOUND        "File not found."
@@ -95,15 +99,48 @@ typedef struct s_global
 
 
 //******************gar_co && memory******************* */
-void	*ft_malloc(size_t size);
+void draw_minimap(t_global *global);
+void	*malloc(size_t size);
 void	ft_free_all(void);
 t_global **get_heap(void);
 //***************************************************** */
 
 //******************parse****************************** */
-bool    parses_map(t_global **global,t_data *data,char *FileName);
-bool    FileName_check( int argc, char **argv);
-void print_data(t_data *data);
+void    ft_free_array(char **array);
+bool    write_map(char ***maps, char *FileName);
+void    skipper(char *line, int *c_index, int *end_index);
+bool    id_type_parse(t_data *data);
+int     ft_arg_count(char **texture);
+bool    file_check(char *file_name);
+bool    texture_parse(t_data *data);
+bool    type_id_parse(t_data *data);
+bool    type_id_storer(t_data *data, char **map);
+bool    id_color_parse(t_data *data);
+bool    in_range(char *color);
+bool    is_valid_color(char *color_tmp);
+unsigned int    rgb_to_hex(int r, int g, int b);
+void    color_converter(t_data *data, char *floor_arg, char *ceiling_arg);
+bool    color_range_parse(t_data *data, char *floor_arg, char *ceiling_arg);
+bool    color_parse(t_data *data);
+bool    color_storer(t_data *data, char **map);
+bool    is_white_space(char *line);
+bool    map_end(char *line);
+void    map_writer(t_data *data, char **map);
+bool    line_char_check(char *line);
+bool    map_characters_check(char **map);
+bool    all_one(char *line);
+bool    border_check(char *line);
+bool    map_border_check(char **map);
+bool    player_char(char c);
+bool    map_border_updown(char **map);
+void    player_view(t_data *data, char **map);
+bool    map_valid_char(char **map);
+void    x_y_store(t_data *data, char **map);
+void    w_h_store(t_data *data, char **map);
+bool    map_check(t_data *data, char **map);
+bool    map_checker(t_data *data, char **map);
+bool    parses_map(t_global **global, t_data *data, char *FileName);
+bool    filename_check(int argc, char **argv);
 //***************************************************** */
 
 void    cub3d(void);

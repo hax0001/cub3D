@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:23:38 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/19 22:38:23 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int main(int ac, char **av)
 {
     t_global   *global;
 
-    if (FileName_check(ac, av) == false)
+    if (filename_check(ac, av) == false)
         return (2);
     global = (t_global *)malloc(sizeof(t_global)); // this memory shoud freed manually with free function
     ft_memset(global, 0, sizeof(t_global));
     *get_heap() = global;
     if (parses_map(&global, global->data, av[1]) == false)
-        return (2);
+        return ( ft_free_all(),2);
     cub3d();
     return (0);
 }

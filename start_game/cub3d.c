@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/19 22:41:29 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int play(void *info)
         return (1);
     ft_memset(mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0}), 0, S_W * S_H * 4);
     cast_rays();
+    // draw_minimap(global); 
     mouve(global ,0 ,0);
     mlx_put_image_to_window(global->mlx_p, global->mlx_w, global->mlx_image, 0, 0);
     return (0);
@@ -58,9 +59,9 @@ void cub3d(void)// 123,669,567
     t_global *global;
     
     global = *get_heap();
-    global->player = (t_player *)ft_malloc(sizeof(t_player));
+    global->player = (t_player *)malloc(sizeof(t_player));
     ft_memset(global->player, 0, sizeof(t_player));
-    global->ray = (t_ray *)ft_malloc(sizeof(t_ray));
+    global->ray = (t_ray *)malloc(sizeof(t_ray));
     ft_memset(global->ray, 0, sizeof(t_ray));
     
     global->mlx_p = mlx_init();
@@ -82,4 +83,3 @@ void cub3d(void)// 123,669,567
     mlx_loop_hook(global->mlx_p, play, global);
     mlx_loop(global->mlx_p);
 }
-

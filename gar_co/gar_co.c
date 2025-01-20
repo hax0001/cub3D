@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gar_co.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:43:43 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/12/18 20:23:06 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_free_all(void)
 	ft_lstclear(&head, free);
 }
 
-void	*ft_malloc(size_t size)
+void	*malloc(size_t size)
 {
 	t_global	*global;
 	t_list		*head;
