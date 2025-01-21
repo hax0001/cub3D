@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:46:36 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/13 14:13:54 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:34:47 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,132 +160,4 @@ void cast_rays()
         ray++;
     }
 }
-
-//           +++++ the rest of code is just to visualize 
-
-// void draw_pixel(int x, int y, int color)
-// {
-//     t_global *global;
-//     char    *dst;
-//     int     bits_per_pixel;
-//     int     line_length;
-//     int     endian;
-
-//     global = *get_heap();
-//     dst = mlx_get_data_addr(global->mlx_image, &bits_per_pixel, &line_length, &endian);
-//     if (x >= 0 && x < S_W && y >= 0 && y < S_H)
-//     {
-//         dst = dst + (y * line_length + x * (bits_per_pixel / 8));
-//         *(unsigned int*)dst = color;
-//     }
-// }
-
-// void draw_rectangle(int x, int y, int color)
-// {
-//     int i;
-//     int j;
-
-//     i = 0;
-//     while (i < TILE_SIZE)
-//     {
-//         j = 0;
-//         while (j < TILE_SIZE)
-//         {
-//             draw_pixel(x + i, y + j, color);
-//             j++;
-//         }
-//         i++;
-//     }
-// }
-
-
-
-// void draw_line(int x1, int y1, int x2, int y2, int color)
-// {
-//     double dx = x2 - x1;
-//     double dy = y2 - y1;
-//     double step = fabs(dx) > fabs(dy) ? fabs(dx) : fabs(dy);
-//     double x_inc = dx / step;
-//     double y_inc = dy / step;
-//     double x = x1;
-//     double y = y1;
-//     int i = 0;
-
-//     while (i <= step)
-//     {
-//         draw_pixel(round(x), round(y), color);
-//         x += x_inc;
-//         y += y_inc;
-//         i++;
-//     }
-// }
-
-// void draw_player(t_global *global)
-// {
-//     int player_size = 8;
-//     int x = global->player->x_p;
-//     int y = global->player->y_p;
-//     int i;
-//     int j;
-
-//     // Draw player circle
-//     i = -player_size;
-//     while (i < player_size)
-//     {
-//         j = -player_size;
-//         while (j < player_size)
-//         {
-//             if (i * i + j * j <= player_size * player_size)
-//                 draw_pixel(x + i, y + j,COLOR_RED);
-//             j++;
-//         }
-//         i++;
-//     }
-
-//     // Draw direction line
-//     int line_length = 20;
-//     int end_x = x + cos(global->player->angle) * line_length;
-//     int end_y = y + sin(global->player->angle) * line_length;
-//     draw_line(x, y, end_x, end_y,COLOR_YELLOW);
-// }
-
-// void draw_map(void)
-// {
-//     t_global *global;
-//     int x;
-//     int y;
-
-//     global = *get_heap();
-    
-//     // Draw map grid
-//     y = 0;
-//     while (global->data->map[y])
-//     {
-//         x = 0;
-//         while (global->data->map[y][x])
-//         {
-//             if (global->data->map[y][x] == '1')
-//                 draw_rectangle(x * TILE_SIZE, y * TILE_SIZE,COLOR_BLUE);
-//             x++;
-//         }
-//         y++;
-//     }
-
-//     // Draw player
-//     draw_player(global);
-
-//     // Draw FOV rays
-//     float ray_angle = global->player->angle - (global->player->fov / 2);
-//     int i = 0;
-//     while (i < S_W)
-//     {
-//         ray_angle = nor_angle(ray_angle);
-//         int ray_x = global->player->x_p + cos(ray_angle) * global->ray->distance;
-//         int ray_y = global->player->y_p + sin(ray_angle) * global->ray->distance;
-//         draw_line(global->player->x_p, global->player->y_p, ray_x, ray_y,COLOR_GREEN);
-//         ray_angle += global->player->fov / S_W;
-//         i++;
-//     }
-// }
-
 

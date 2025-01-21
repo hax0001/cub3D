@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:44:37 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void cub3d(void)// 123,669,567
     t_global *global;
     
     global = *get_heap();
-    global->player = (t_player *)malloc(sizeof(t_player));
+    global->player = (t_player *)ft_malloc(sizeof(t_player));
     ft_memset(global->player, 0, sizeof(t_player));
-    global->ray = (t_ray *)malloc(sizeof(t_ray));
+    global->ray = (t_ray *)ft_malloc(sizeof(t_ray));
     ft_memset(global->ray, 0, sizeof(t_ray));
     
     global->mlx_p = mlx_init();
@@ -75,7 +75,7 @@ void cub3d(void)// 123,669,567
     global->mlx_image = mlx_new_image(global->mlx_p, S_W, S_H);
     if (!global->mlx_image)
         ft_error(ERR_MLX_INIT_FAILED);
-    
+    init_textures(global);
     init_player();
     mlx_hook(global->mlx_w, 2, 1L<<0, key_press, global); 
     mlx_hook(global->mlx_w, 3, 1L<<1, key_release, global);  

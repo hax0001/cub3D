@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:21:36 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/20 22:05:27 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:58:31 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,16 @@ bool	id_type_parse(t_data *data)
 	int	end_index;
 
 	skipper(data->no, &c_index, &end_index);
-	if (ft_strncmp(data->no, "NO", end_index) != 0)
+	if (data->no && ft_strncmp(data->no, "NO", end_index) != 0)
 		return (false);
 	skipper(data->ea, &c_index, &end_index);
-	if (ft_strncmp(data->ea, "EA", end_index) != 0)
+	if (data->ea && ft_strncmp(data->ea, "EA", end_index) != 0)
 		return (false);
 	skipper(data->we, &c_index, &end_index);
-	if (ft_strncmp(data->we, "WE", end_index) != 0)
+	if (data->we && ft_strncmp(data->we, "WE", end_index) != 0)
 		return (false);
 	skipper(data->so, &c_index, &end_index);
-	if (ft_strncmp(data->so, "SO", end_index) != 0)
+	if (data->so && ft_strncmp(data->so, "SO", end_index) != 0)
 		return (false);
 	return (true);
 }
@@ -98,6 +98,8 @@ int	ft_arg_count(char **texture)
 {
 	int	count;
 
+	if (!texture)
+		return (0);
 	count = 0;
 	while (texture[count])
 		count++;

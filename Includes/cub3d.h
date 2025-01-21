@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:44:56 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,16 @@ typedef struct s_data
     int              h_map; // hight map
 } t_data ;
 
+typedef struct s_texture {
+    void    *img;           // MLX image pointer
+    char    *addr;          // Image data address
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+    int     width;
+    int     height;
+} t_texture;
+
 typedef struct s_global
 {
     void    *mlx_p; // mlx pointer
@@ -95,13 +105,18 @@ typedef struct s_global
     t_data  *data; // pointer to data struct
     t_ray   *ray; // pointer to ray struct
     t_player    *player; // ponter to player struct
+    t_texture *north_tex;
+    t_texture *south_tex;
+    t_texture *east_tex;
+    t_texture *west_tex;
 } t_global ;
 
 
 //******************gar_co && memory******************* */
 void draw_minimap(t_global *global);
-void	*malloc(size_t size);
+void	*ft_malloc(size_t size);
 void	ft_free_all(void);
+void init_textures(t_global *global);
 t_global **get_heap(void);
 //***************************************************** */
 

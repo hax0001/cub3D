@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:16:59 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:24:15 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	w_h_store(t_data *data, char **map)
 	int		v_index;
 
 	v_index = 0;
-	w_map = strlen(map[v_index]);
+	w_map = ft_strlen(map[v_index]);
 	while (map[v_index])
 	{
-		if (w_map < strlen(map[v_index]))
-			w_map = strlen(map[v_index]);
+		if (w_map < ft_strlen(map[v_index]))
+			w_map = ft_strlen(map[v_index]);
 		v_index++;
 	}
 	data->h_map = ft_arg_count(map);
@@ -61,7 +61,7 @@ bool	parses_map(t_global **global, t_data *data, char *FileName)
 {
 	char	**map;
 
-	data = (t_data *)malloc(sizeof(t_data));
+	data = (t_data *)ft_malloc(sizeof(t_data));
 	(*global)->data = data;
 	ft_memset(data, 0, sizeof(t_data));
 	if (write_map(&map, FileName) == false)
@@ -81,7 +81,7 @@ bool	filename_check(int argc, char **argv)
 		printf("Error\nUsage : ./cub3d <map>\n");
 		return (false);
 	}
-	lilelen = strlen(argv[1]) - 4;
+	lilelen = ft_strlen(argv[1]) - 4;
 	filename = argv[1];
 	if (strcmp(filename + lilelen, ".cub") != 0)
 	{

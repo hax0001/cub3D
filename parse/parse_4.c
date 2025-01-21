@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:18:07 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:23:38 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	map_writer(t_data *data, char **map)
 		index--;
 	}
 	index++;
-	data->map = (char **)malloc((ft_arg_count(map) - index)
+	data->map = (char **)ft_malloc((ft_arg_count(map) - index)
 			* sizeof(char **));
 	data->map[ft_arg_count(map) - index] = NULL;
 	while (map[index])

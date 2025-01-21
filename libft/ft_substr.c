@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:22:46 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:37:27 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	str = (char *)malloc(sizeof(*s) * (len + 1));
+	str = (char *)ft_malloc(sizeof(*s) * (len + 1));
 	if (str == 0)
 		return (NULL);
 	i = 0;

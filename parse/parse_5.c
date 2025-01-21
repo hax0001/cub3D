@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:18:13 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/20 22:12:23 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:24:15 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	in_range(char *color)
 	i = 0;
 	while (color[i] && (ft_isdigit(color[i]) == true || color[i] == ','))
 		i++;
-	if (i != strlen(color))
+	if (i != ft_strlen(color))
 		return (false);
 	return (true);
 }
@@ -33,7 +33,7 @@ bool	is_valid_color(char *color_tmp)
 
 	index = 0;
 	color = ft_split(color_tmp, ',');
-	if (ft_arg_count(color) != 3 || color_tmp[strlen(color_tmp) - 1] == ','
+	if (ft_arg_count(color) != 3 || color_tmp[ft_strlen(color_tmp) - 1] == ','
 		|| color_tmp[0] == ',')
 		return (ft_free_array(color), false);
 	color_num[0] = color[0];
@@ -74,6 +74,8 @@ bool	color_range_parse(t_data *data, char *floor_arg, char *ceiling_arg)
 	char	**floor;
 	char	**ceiling;
 
+	if (!floor_arg || !ceiling_arg)
+		return (false);
 	floor = ft_split(floor_arg, ' ');
 	ceiling = ft_split(ceiling_arg, ' ');
 	if (ft_arg_count(ceiling) != 2 || ft_arg_count(floor) != 2)

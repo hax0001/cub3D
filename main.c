@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:23:38 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/20 22:21:33 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:39:34 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int main(int ac, char **av)
     ft_memset(global, 0, sizeof(t_global));
     *get_heap() = global;
     if (parses_map(&global, global->data, av[1]) == false)
-        return ( ft_free_all(),2);
+        return (2);
     cub3d();
     return (0);
 }
