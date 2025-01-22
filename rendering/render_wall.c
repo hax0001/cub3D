@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:03:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/23 00:28:57 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/23 00:32:37 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	load_texture(t_global *global, t_texture **tex, char *path)
 {
 	*tex = ft_malloc(sizeof(t_texture));
 	(*tex)->img = mlx_xpm_file_to_image(global->mlx_p, path,
-			&(*tex)->width + 1, &(*tex)->height);
+			&(*tex)->width , &(*tex)->height);
 	if (!(*tex)->img)
 		ft_error("Failed to load texture");
 	(*tex)->addr = mlx_get_data_addr((*tex)->img, &(*tex)->bits_per_pixel,
@@ -163,45 +163,27 @@ static double	calculate_wall_x(t_global *global)
 {
 	double	wall_x;
 
-	if (global->ray->ray_f)  // Horizontal hit
-	{
+	if (global->ray->ray_f)
 		wall_x = global->player->x_p + global->ray->distance
 			* cos(global->ray->angle);
-	}
-	else  // Vertical hit
-	{
+	else
 		wall_x = global->player->y_p + global->ray->distance
 			* sin(global->ray->angle);
-	}
-	wall_x = wall_x - floor(wall_x);
-	if (wall_x < 0)
-		wall_x = 1 + wall_x;
-	return (wall_x);
+	return (wall_x - floor(wall_x));
 }
-
 
 static int	calculate_tex_x(t_global *global, double wall_x, int tex_width)
 {
 	int	tex_x;
 
-	// Convert wall_x to texture coordinate
-	tex_x = (int)(wall_x * (double)tex_width);
-	
-	// Flip texture if needed based on wall orientation
+	tex_x = (int)(wall_x * tex_width);
 	if ((!global->ray->ray_f && global->ray->angle > M_PI / 2
 			&& global->ray->angle < 3 * M_PI / 2)
 		|| (global->ray->ray_f && !(global->ray->angle > 0
 			&& global->ray->angle < M_PI)))
 		tex_x = tex_width - tex_x - 1;
-
-	// Ensure texture x-coordinate stays within bounds
-	tex_x = tex_x % tex_width;
-	if (tex_x < 0)
-		tex_x = 0;
-		
 	return (tex_x);
 }
-
 
 static void	draw_wall_strip(t_global *global, int ray, int t_pix,
 	t_draw_info *info)
@@ -212,16 +194,12 @@ static void	draw_wall_strip(t_global *global, int ray, int t_pix,
 	double			step;
 	unsigned int	color;
 
-	// Calculate step based on actual wall height
-	step = (double)info->tex->height / (double)(info->b_pix - t_pix);
+	step = (double)info->tex->height / (info->b_pix - t_pix);
 	tex_pos = 0;
 	y = t_pix;
 	while (y < info->b_pix)
 	{
-		// Ensure texture y-coordinate stays within bounds
-		tex_y = (int)tex_pos % info->tex->height;
-		if (tex_y < 0)
-			tex_y = 0;
+		tex_y = (int)tex_pos & (info->tex->height - 1);
 		color = get_texture_color(info->tex, info->tex_x, tex_y);
 		my_mlx_pixel_put(global, ray, y, color);
 		tex_pos += step;
@@ -235,16 +213,11 @@ void	draw_textured_wall(t_global *global, int ray, int t_pix, int b_pix)
 	t_draw_info	info;
 	double		wall_x;
 
-	// Get the correct texture based on wall orientation
 	tex = get_wall_texture(global);
 	info.tex = tex;
 	info.b_pix = b_pix;
-
-	// Calculate texture coordinates
 	wall_x = calculate_wall_x(global);
 	info.tex_x = calculate_tex_x(global, wall_x, tex->width);
-
-	// Draw the wall strip with proper scaling
 	draw_wall_strip(global, ray, t_pix, &info);
 }
 
