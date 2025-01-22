@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:21:25 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/21 13:03:32 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/22 17:27:44 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ bool	type_id_storer(t_data *data, char **map)
 	while (map[v_index])
 	{
 		skipper(map[v_index], &c_index, &end_index);
-		if (data->no && ft_strnstr(map[v_index] + c_index, "NO", end_index))
+		if (ft_strnstr(map[v_index] + c_index, "NO", end_index))
 			data->no = ft_strdup(map[v_index] + c_index);
-		if (data->so && ft_strnstr(map[v_index] + c_index, "SO", end_index))
+		if (ft_strnstr(map[v_index] + c_index, "SO", end_index))
 			data->so = ft_strdup(map[v_index] + c_index);
-		if (data->we && ft_strnstr(map[v_index] + c_index, "WE", end_index))
+		if (ft_strnstr(map[v_index] + c_index, "WE", end_index))
 			data->we = ft_strdup(map[v_index] + c_index);
-		if (data->no && ft_strnstr(map[v_index] + c_index, "EA", end_index))
-			data->no = ft_strdup(map[v_index] + c_index);
+		if (ft_strnstr(map[v_index] + c_index, "EA", end_index))
+			data->ea = ft_strdup(map[v_index] + c_index);
 		v_index++;
 	}
 	if (type_id_parse(data) == false)

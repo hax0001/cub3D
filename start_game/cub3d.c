@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/21 14:44:37 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/22 18:07:32 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void    init_player(void)
     player->fov = FOV * (M_PI / 180);
 }
 
-void cub3d(void)// 123,669,567
+
+void cub3d(void)
 {
     t_global *global;
     
@@ -75,8 +76,8 @@ void cub3d(void)// 123,669,567
     global->mlx_image = mlx_new_image(global->mlx_p, S_W, S_H);
     if (!global->mlx_image)
         ft_error(ERR_MLX_INIT_FAILED);
-    init_textures(global);
     init_player();
+    init_textures(global);
     mlx_hook(global->mlx_w, 2, 1L<<0, key_press, global); 
     mlx_hook(global->mlx_w, 3, 1L<<1, key_release, global);  
     mlx_hook(global->mlx_w, 17, 0, (void *)ft_exit, NULL);   

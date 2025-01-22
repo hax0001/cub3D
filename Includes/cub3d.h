@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/21 14:44:56 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/23 00:01:42 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 # define ERR_GENERIC               "An unspecified error occurred."
 
 
-
 typedef struct s_player
 {
     int     x_p; // x player position in pixel
@@ -68,6 +67,23 @@ typedef struct s_ray
     
 } t_ray ;
 
+typedef struct s_texture {
+    void    *img;           // MLX image pointer
+    char    *addr;          // Image data address
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+    int     width;
+    int     height;
+} t_texture;
+
+typedef struct s_draw_info
+{
+	t_texture	*tex;
+	int			b_pix;
+	int			tex_x;
+}	t_draw_info;
+
 typedef struct s_data
 {
     char             **map; // map in 2d demention
@@ -84,17 +100,12 @@ typedef struct s_data
     int              y_p_m; // y player position in map
     int              w_map; // width map
     int              h_map; // hight map
+    t_texture *north_tex;
+    t_texture *south_tex;
+    t_texture *east_tex;
+    t_texture *west_tex;
 } t_data ;
 
-typedef struct s_texture {
-    void    *img;           // MLX image pointer
-    char    *addr;          // Image data address
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-    int     width;
-    int     height;
-} t_texture;
 
 typedef struct s_global
 {
@@ -105,10 +116,6 @@ typedef struct s_global
     t_data  *data; // pointer to data struct
     t_ray   *ray; // pointer to ray struct
     t_player    *player; // ponter to player struct
-    t_texture *north_tex;
-    t_texture *south_tex;
-    t_texture *east_tex;
-    t_texture *west_tex;
 } t_global ;
 
 
@@ -117,6 +124,7 @@ void draw_minimap(t_global *global);
 void	*ft_malloc(size_t size);
 void	ft_free_all(void);
 void init_textures(t_global *global);
+void print_data(t_data *data);
 t_global **get_heap(void);
 //***************************************************** */
 
