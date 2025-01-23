@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/22 18:07:32 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/23 21:39:28 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void cub3d(void)
     global->mlx_image = mlx_new_image(global->mlx_p, S_W, S_H);
     if (!global->mlx_image)
         ft_error(ERR_MLX_INIT_FAILED);
+    int with = 1080 * 60, hegt = 1080 * 60;
+    global->mlx_image2 = mlx_xpm_file_to_image(global->mlx_p,"textures/dyawli/uk.xpm" ,&with ,&hegt);
     init_player();
     init_textures(global);
     mlx_hook(global->mlx_w, 2, 1L<<0, key_press, global); 

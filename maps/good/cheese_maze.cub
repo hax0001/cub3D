@@ -1,7 +1,7 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
+NO textures/dyawli/uk.xpm
+SO textures/dyawli/uk.xpm
+WE textures/dyawli/uk.xpm
+EA textures/dyawli/uk.xpm
 
 F 1,0,0   
 
@@ -10,5 +10,7 @@ C 153,204,255
 
 111111111111111111111
 1E0000000000000000001
-10000000000000000111
+100000000001000000001
+100000000000000000001
+100000000000000000001
 111111111111111111111

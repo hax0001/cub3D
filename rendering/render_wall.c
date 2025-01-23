@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:03:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/23 00:32:37 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/23 22:04:45 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,30 +159,34 @@ t_texture	*get_wall_texture(t_global *global)
 	return (get_wall_texture_vertical(global, angle));
 }
 
-static double	calculate_wall_x(t_global *global)
+static double calculate_wall_x(t_global *global)
 {
-	double	wall_x;
+    double wall_x;
 
-	if (global->ray->ray_f)
-		wall_x = global->player->x_p + global->ray->distance
-			* cos(global->ray->angle);
-	else
-		wall_x = global->player->y_p + global->ray->distance
-			* sin(global->ray->angle);
-	return (wall_x - floor(wall_x));
+    if (global->ray->ray_f)  // Horizontal hit
+    {
+        wall_x = global->player->x_p + global->ray->distance * cos(global->ray->angle);
+    }
+    else  // Vertical hit
+    {
+        wall_x = global->player->y_p + global->ray->distance * sin(global->ray->angle);
+    }
+
+    return wall_x - floor(wall_x);
 }
 
-static int	calculate_tex_x(t_global *global, double wall_x, int tex_width)
+static int calculate_tex_x(t_global *global, double wall_x, int tex_width)
 {
-	int	tex_x;
+    int tex_x = (int)(wall_x * tex_width);
 
-	tex_x = (int)(wall_x * tex_width);
-	if ((!global->ray->ray_f && global->ray->angle > M_PI / 2
-			&& global->ray->angle < 3 * M_PI / 2)
-		|| (global->ray->ray_f && !(global->ray->angle > 0
-			&& global->ray->angle < M_PI)))
-		tex_x = tex_width - tex_x - 1;
-	return (tex_x);
+    // More precise texture flipping logic
+    if ((global->ray->ray_f == 0 && cos(global->ray->angle) < 0) ||
+        (global->ray->ray_f == 1 && sin(global->ray->angle) < 0))
+    {
+        tex_x = tex_width - tex_x - 1;
+    }
+
+    return fmax(0, fmin(tex_x, tex_width - 1));
 }
 
 static void	draw_wall_strip(t_global *global, int ray, int t_pix,

@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/23 00:01:42 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/23 21:19:59 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ typedef struct s_global
     void    *mlx_p; // mlx pointer
     void    *mlx_w; // mlx window pointer
     void    *mlx_image; // mlx image pointer
+    void    *mlx_image2; // mlx image pointer
+
     t_list  *gar_co; // head od list of gabedge collector
     t_data  *data; // pointer to data struct
     t_ray   *ray; // pointer to ray struct
