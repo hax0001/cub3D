@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/23 21:19:59 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:10:38 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@
 #endif
 
 #define MINIMAP_SIZE 200  // Size of minimap in pixels
-#define MINIMAP_SCALE 0.5 // Scale factor for minimap (1/5 of original size)
-#define MINIMAP_PADDING 20
+#define MINIMAP_SCALE 0.25 // Scale factor for minimap (1/5 of original size)
+#define MINIMAP_PADDING 3
 
 # define S_W 1900 // wndow width
 # define S_H 1000 // window height
 # define TILE_SIZE 30 // size of tile
-# define FOV 60 // field of vew
+# define FOV 70 // field of vew
 # define R_SPEED 0.020 // rottion speed
-# define P_SPEED 4 //player speed
+# define P_SPEED 2 //player speed
 
 # define ERR_INVALID_ARGUMENT      "Invalid argument provided."
 # define ERR_FILE_NOT_FOUND        "File not found."

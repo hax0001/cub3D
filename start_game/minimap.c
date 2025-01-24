@@ -117,7 +117,7 @@ void draw_minimap_background(t_global *global)
             }
             dst = mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0});
             dst = dst + (j * S_W * 4 + i * 4);
-            *(unsigned int *)dst = 0x80000000;
+            *(unsigned int *)dst = 0x3799;
             j++;
         }
         i++;
@@ -131,23 +131,22 @@ void draw_minimap(t_global *global)
 
     draw_minimap_background(global);
 
-    y = 0;
-    while (y < global->data->h_map)
-    {
-        x = 0;
-        while (x < global->data->w_map)
-        {
-            if (global->data->map[y] && x < (int)ft_strlen(global->data->map[y]))
-            {
-                if (global->data->map[y][x] == '1')
-                    draw_minimap_rect(global, x, y, 0x808080);
-                else if (global->data->map[y][x] == '0')
-                    draw_minimap_rect(global, x, y, 0x404040);
-            }
-            x++;
-        }
-        y++;
-    }
-
-    draw_minimap_player(global);
+    // y = 0;
+    // while (y < global->data->h_map)
+    // {
+    //     x = 0;
+    //     while (x < global->data->w_map)
+    //     {
+    //         if (global->data->map[y] && x < (int)ft_strlen(global->data->map[y]))
+    //         {
+    //             if (global->data->map[y][x] == '1')
+    //                 draw_minimap_rect(global, x, y, 0x808080);
+    //             else if (global->data->map[y][x] == '0' || player_char(global->data->map[y][x]))
+    //                 draw_minimap_rect(global, x, y, 0x404040);
+    //         }
+    //         x++;
+    //     }
+    //     y++;
+    // }
+    // draw_minimap_player(global);
 }

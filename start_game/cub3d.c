@@ -6,11 +6,46 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/23 21:39:28 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:06:55 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
+
+
+void draw_player(t_global *global)
+{
+    void *img_player;
+    int player_width, player_height;
+    char *player_data;
+    int bits_per_pixel, line_length, endian;
+
+    // Load the player image from the .xpm file
+    img_player = mlx_xpm_file_to_image(global->mlx_p, "textures/player/fps_gun.xpm", &player_width, &player_height);
+    if (!img_player)
+    {
+        // Handle error if image loading fails
+        return;
+    }
+
+    // Access the pixel data address of the loaded image
+    player_data = mlx_get_data_addr(img_player, &bits_per_pixel, &line_length, &endian);
+    
+    // Clear the image buffer (fill it with black or a background color)
+    ft_memset(mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0}), 0, S_W * S_H * 4);
+
+    // Calculate the position to place the player image at the bottom middle
+    int player_x = (S_W - player_width) / 2; // Center horizontally
+    int player_y = S_H - player_height;      // Place at the bottom
+
+    // Put the image to the window at the calculated position
+    mlx_put_image_to_window(global->mlx_p, global->mlx_w, img_player, player_x, player_y);
+
+    // Optionally destroy the image if not needed anymore
+    // mlx_destroy_image(global->mlx_p, img_player);
+}
+
+
 
 void    ft_exit(void)
 {
@@ -29,13 +64,15 @@ int play(void *info)
 {
     t_global *global;
     
+    int flg = 1;
     global = (t_global *)info;
     if (!global || !global->mlx_image)
         return (1);
     ft_memset(mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0}), 0, S_W * S_H * 4);
     cast_rays();
-    // draw_minimap(global); 
+    draw_minimap(global);
     mouve(global ,0 ,0);
+    // draw_player(global);
     mlx_put_image_to_window(global->mlx_p, global->mlx_w, global->mlx_image, 0, 0);
     return (0);
 }

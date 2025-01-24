@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:03:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/23 22:04:45 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:37:52 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,28 @@ static  float nor_angle(float angle) // normalize the angle
 	return (angle);
 }
 
+int 	get_color_hex(bool flag) // get the color of the floor and the ceiling
+{
+	t_global *global;
+	int 		color;
+
+	global = *get_heap();
+	if (flag)
+		return (global->data->f_color);	
+	else
+		return (global->data->c_color);
+}
+
 void draw_floor_ceiling(t_global *global, int ray, int t_pix, int b_pix) // draw the floor and the ceiling
 {
     int  i;
  
 	i = b_pix;
 	while (i < S_H)
-		my_mlx_pixel_put(global, ray, i++, 0x574964); // floor
+		my_mlx_pixel_put(global, ray, i++, get_color_hex(false)); // floor
 	i = 0;
 	while (i < t_pix)
-		my_mlx_pixel_put(global, ray, i++, 0xC8ACD6); // ceiling
+		my_mlx_pixel_put(global, ray, i++, get_color_hex(true)); // ceiling
 }
 
 int get_color(t_global *global, int flag) // get the color of the wall
@@ -248,3 +260,4 @@ void render_wall(int ray) // render the wall
 	draw_floor_ceiling(global, ray, t_pix, b_pix); // draw the floor and the ceiling
 	
 }
+ 
