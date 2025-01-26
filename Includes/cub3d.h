@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 19:07:48 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:10:39 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@
 # define ERR_TEXTURE_LOAD_FAILED   "Failed to load texture."
 # define ERR_GENERIC               "An unspecified error occurred."
 
+
+typedef struct Allocation {
+    void *ptr;
+    struct Allocation *next;
+} Allocation;
 
 typedef struct s_player
 {
