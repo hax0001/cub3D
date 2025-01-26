@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:23:38 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 18:55:19 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 22:11:59 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ void print_data(t_data *data)
         printf("map_H = %d\n",data->h_map);
         int i = 0;
         printf("<------------MAP--------->\n");
-        
         while (data->map[i])
         {
             printf("%s\n", data->map[i++]);
         }
-        
     }
     else
     {
@@ -45,7 +43,7 @@ int main(int ac, char **av)
 {
     t_global *global;
 
-    *get_heap() = NULL; // Initialize the static global pointer
+    *get_heap() = NULL;
     if (filename_check(ac, av) == false)
         return (2);
     global = (t_global *)ft_malloc(sizeof(t_global)); // Allocate memory for global

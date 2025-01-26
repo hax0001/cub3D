@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 19:47:41 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 22:35:42 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_draw_info
 
 typedef struct s_data
 {
+	bool				flag;
 	char			**map;
 	char			*no;
 	char			*so;

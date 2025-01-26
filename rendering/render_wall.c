@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:03:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 23:09:26 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/27 00:08:47 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ void draw_floor_ceiling(t_global *global, int ray, int t_pix, int b_pix)
 
 t_texture  *get_texture_index(t_global *global)
 {
-    if (global->ray->ray_f == 0)
+    if (global->ray->ray_f == 1)
     {
-        if (global->ray->angle > M_PI && global->ray->angle < 2 * M_PI)
+        if (global->ray->angle >= 0 && global->ray->angle <= M_PI)
             return global->data->south_tex;
         else
             return global->data->north_tex;
     }
     else 
     {
-        if (global->ray->angle > M_PI / 2 && global->ray->angle < 3 * M_PI / 2)
+        if (global->ray->angle > M_PI / 2 && global->ray->angle <=  3 * M_PI / 2)
             return global->data->west_tex;
         else
             return global->data->east_tex;
