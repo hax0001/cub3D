@@ -6,26 +6,12 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:21:36 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/22 17:24:25 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 20:01:40 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
 
-void	ft_free_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	if (!array)
-		return ;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
 
 bool	write_map(char ***maps, char *FileName)
 {
@@ -39,20 +25,21 @@ bool	write_map(char ***maps, char *FileName)
 	str1 = get_next_line(fd);
 	if (fd == -1 && str1 == NULL)
 	{
-		printf("Error\nFatal Error While Reading The File\n");
+		ft_putstr_fd("Error\nFatal Error While Reading The File\n", 2);
 		return (false);
 	}
 	while (str1)
 	{
 		tmp = ft_strjoin(str2, str1);
-		free(str2);
+		// free(str2);
 		str2 = tmp;
-		free(str1);
+		// free(str1);
 		str1 = get_next_line(fd);
 	}
 	close(fd);
 	*maps = ft_split(str2, '\n');
-	return (free(str2), true);
+	// free(str2);
+	return (true);
 }
 
 void	skipper(char *line, int *c_index, int *end_index)

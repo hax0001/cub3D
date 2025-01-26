@@ -48,14 +48,7 @@ void draw_minimap_player(t_global *global)
     int player_size;
     int i;
     int j;
-    int line_length;
-    int end_x;
-    int end_y;
-    double dx;
-    double dy;
-    double steps;
-    double x;
-    double y;
+
 
     player_x = global->player->x_p * MINIMAP_SCALE;
     player_y = global->player->y_p * MINIMAP_SCALE;
@@ -67,86 +60,67 @@ void draw_minimap_player(t_global *global)
         while (j < player_size)
         {
             if (i * i + j * j <= player_size * player_size)
-                draw_minimap_pixel(global, player_x + i, player_y + j, 0xFF0000);
+                draw_minimap_pixel(global, player_x + i, player_y + j, 0xED4C67);
             j++;
         }
-        i++;
-    }
-
-    line_length = 10;
-    end_x = player_x + cos(global->player->angle) * line_length;
-    end_y = player_y + sin(global->player->angle) * line_length;
-    dx = end_x - player_x;
-    dy = end_y - player_y;
-    steps = fmax(fabs(dx), fabs(dy));
-    if (steps == 0)
-        return;
-    dx /= steps;
-    dy /= steps;
-    x = player_x;
-    y = player_y;
-    i = 0;
-    while (i <= steps)
-    {
-        draw_minimap_pixel(global, round(x), round(y), 0xFFFF00);
-        x += dx;
-        y += dy;
         i++;
     }
 }
 
 void draw_minimap_background(t_global *global)
 {
-    int size;
-    int i;
-    int j;
-    char *dst;
+    int      size;
+    int      i;
+    int      j;
+    int      h;
+    int      k;
+    int      r;
+    char     *dst;
 
     size = MINIMAP_SIZE + (MINIMAP_PADDING * 2);
-    i = 0;
-    while (i < size)
+    r = MINIMAP_SIZE / 2;
+    h = r + MINIMAP_PADDING;
+    k = S_H - r - MINIMAP_PADDING;
+    i = h - r - MINIMAP_PADDING;
+    while (i < h + r + MINIMAP_PADDING)
     {
-        j = 0;
-        while (j < size)
+        j = k - r - MINIMAP_PADDING;
+        while (j < k + r + MINIMAP_PADDING)
         {
-            if (i < MINIMAP_PADDING || i >= size - MINIMAP_PADDING ||
-                j < MINIMAP_PADDING || j >= size - MINIMAP_PADDING)
+            if ((i - h) * (i - h) + (j - k) * (j - k) <= r * r)
             {
-                j++;
-                continue;
+                dst = mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0});
+                dst = dst + (j * S_W * 4 + i * 4);
+                *(unsigned int *)dst = 0x3799;
             }
-            dst = mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0});
-            dst = dst + (j * S_W * 4 + i * 4);
-            *(unsigned int *)dst = 0x3799;
             j++;
         }
         i++;
     }
 }
 
+
 void draw_minimap(t_global *global)
 {
     int x;
     int y;
 
-    draw_minimap_background(global);
-
-    // y = 0;
-    // while (y < global->data->h_map)
-    // {
-    //     x = 0;
-    //     while (x < global->data->w_map)
-    //     {
-    //         if (global->data->map[y] && x < (int)ft_strlen(global->data->map[y]))
-    //         {
-    //             if (global->data->map[y][x] == '1')
-    //                 draw_minimap_rect(global, x, y, 0x808080);
-    //             else if (global->data->map[y][x] == '0' || player_char(global->data->map[y][x]))
-    //                 draw_minimap_rect(global, x, y, 0x404040);
-    //         }
-    //         x++;
-    //     }
-    //     y++;
-    // }
-    // draw_minimap_player(global);
+    y = 0;
+    while (y < global->data->h_map)
+    {
+        x = 0;
+        while (x < global->data->w_map)
+        {
+            if (global->data->map[y] && x < (int)ft_strlen(global->data->map[y]))
+            {
+                if (global->data->map[y][x] == '1')
+                    draw_minimap_rect(global, x, y, 0x0652DD);
+                else if (global->data->map[y][x] == '0' || player_char(global->data->map[y][x]))
+                    draw_minimap_rect(global, x, y, 0x9980FA);
+            }
+            x++;
+        }
+        y++;
+    }
+    draw_minimap_player(global);
 }

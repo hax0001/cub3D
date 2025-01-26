@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/24 16:06:55 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 01:28:43 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void    ft_exit(void)
     t_global    *global;
 
     global = *get_heap();
-    ft_free_all();
-    mlx_destroy_window(global->mlx_p,  global->mlx_w);
+    mlx_destroy_window(global->mlx_p,  global->mlx_w);   
     mlx_destroy_image(global->mlx_p,  global->mlx_image);
     mlx_destroy_display(global->mlx_p);
-    free(global);
-    exit(0);
+    ft_free_all();
+    exit(1);
+    // free(global);
 }
 
 int play(void *info)
@@ -70,6 +70,7 @@ int play(void *info)
         return (1);
     ft_memset(mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0}), 0, S_W * S_H * 4);
     cast_rays();
+    
     draw_minimap(global);
     mouve(global ,0 ,0);
     // draw_player(global);
@@ -105,18 +106,14 @@ void cub3d(void)
     global->mlx_p = mlx_init();
     if (!global->mlx_p)
         ft_error(ERR_MLX_INIT_FAILED);
-        
     global->mlx_w = mlx_new_window(global->mlx_p, S_W, S_H, "cub3d");
     if (!global->mlx_w)
         ft_error(ERR_MLX_INIT_FAILED);
-        
     global->mlx_image = mlx_new_image(global->mlx_p, S_W, S_H);
     if (!global->mlx_image)
         ft_error(ERR_MLX_INIT_FAILED);
-    int with = 1080 * 60, hegt = 1080 * 60;
-    global->mlx_image2 = mlx_xpm_file_to_image(global->mlx_p,"textures/dyawli/uk.xpm" ,&with ,&hegt);
     init_player();
-    init_textures(global);
+    load_textures(global); // take
     mlx_hook(global->mlx_w, 2, 1L<<0, key_press, global); 
     mlx_hook(global->mlx_w, 3, 1L<<1, key_release, global);  
     mlx_hook(global->mlx_w, 17, 0, (void *)ft_exit, NULL);   

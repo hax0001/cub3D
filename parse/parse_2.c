@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:18:01 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/21 13:24:15 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:40:30 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ bool	map_border_updown(char **map)
 			{
 				if (c_index >= ft_strlen(map[v_index + 1])
 					|| c_index >= ft_strlen(map[v_index - 1]))
-					return (printf("Error\nThe Map Is Invalid\n"), false);
+					return (ft_putstr_fd("Error\nMap Is Invalid\n", 2), false);
 				if (map[v_index + 1][c_index] == ' ' || map[v_index
 					- 1][c_index] == ' ')
-					return (printf("Error\nThe Map Is Invalid\n"), false);
+					return (ft_putstr_fd("Error\nMap Is Invalid\n", 2), false);
 			}
 			c_index++;
 		}

@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:21:25 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/22 17:27:44 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:57:58 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ bool	texture_parse(t_data *data)
 	{
 		temp = ft_split(textures[i], ' ');
 		if (ft_arg_count(temp) != 2)
-			return (ft_free_array(temp), false);
+			return ( false);
 		if (file_check(temp[1]) == false)
-			return (ft_free_array(temp), false);
-		ft_free_array(temp);
+			return ( false);
 		i++;
 	}
 	return (true);
@@ -73,7 +72,7 @@ bool	type_id_storer(t_data *data, char **map)
 
 	v_index = 0;
 	if (!map)
-		return (printf("Error\nInvalid Map\n"), false);
+		return (ft_putstr_fd("Error\nInvalid Map\n", 2), false);
 	while (map[v_index])
 	{
 		skipper(map[v_index], &c_index, &end_index);
@@ -88,10 +87,7 @@ bool	type_id_storer(t_data *data, char **map)
 		v_index++;
 	}
 	if (type_id_parse(data) == false)
-	{
-		printf("Error\nInvalid Textures\n");
-		return (false);
-	}
+		return (ft_putstr_fd("Error\nInvalid Textures\n", 2), false);
 	return (true);
 }
 

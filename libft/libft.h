@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:05:14 by prossi            #+#    #+#             */
-/*   Updated: 2025/01/21 12:37:27 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:31:39 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	*ft_malloc(size_t size);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:16:59 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/21 13:24:15 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 18:42:59 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ bool	map_check(t_data *data, char **map)
 	if (map_characters_check(data->map) == false)
 		return (false);
 	if (map_border_check(data->map) == false)
-		return (printf("error in border\n"), false);
+		return (ft_putstr_fd("Error\nThe Map Is Not Valid\n", 2), false);
 	if (map_border_updown(data->map) == false)
-		return (printf("error in border 2\n"), false);
+		return (ft_putstr_fd("Error\nThe Map Is Not Valid\n", 2), false);
 	if (map_valid_char(data->map) == false)
-		return (printf("error in border 3\n"), false);
+		return (ft_putstr_fd("Error\nThe Map Is Not Valid\n", 2), false);
 	player_view(data, data->map);
 	x_y_store(data, data->map);
 	w_h_store(data, data->map);
@@ -73,19 +73,19 @@ bool	parses_map(t_global **global, t_data *data, char *FileName)
 
 bool	filename_check(int argc, char **argv)
 {
-	int		lilelen;
+	int		filelen;
 	char	*filename;
 
 	if (argc != 2)
 	{
-		printf("Error\nUsage : ./cub3d <map>\n");
+		ft_putstr_fd("Error\nUsage : ./cub3d <map>\n", 2);
 		return (false);
 	}
-	lilelen = ft_strlen(argv[1]) - 4;
+	filelen = ft_strlen(argv[1]) - 4;
 	filename = argv[1];
-	if (strcmp(filename + lilelen, ".cub") != 0)
+	if (ft_strcmp(filename + filelen, ".cub") != 0)
 	{
-		printf("Error\nBad extension\n");
+		ft_putstr_fd("Error\nBad extension\n", 2);
 		return (false);
 	}
 	return (true);

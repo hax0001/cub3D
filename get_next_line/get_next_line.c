@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 17:56:47 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/21 12:39:13 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:25:30 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ static char	*keep_b(char *buf)
 		i++;
 	if (!buf[i])
 	{
-		free(buf);
 		return (NULL);
 	}
-	str = (char *)malloc(ft_strlen(buf) - i++ + 1);
+	str = (char *)ft_malloc(ft_strlen(buf) - i++ + 1);
 	if (!str)
 		return (NULL);
 	while (buf[i])
@@ -37,7 +36,7 @@ static char	*keep_b(char *buf)
 		j++;
 	}
 	str[j] = '\0';
-	return (free(buf), buf = NULL, str);
+	return (buf = NULL, str);
 }
 
 static char	*final_r(char *buf)
@@ -52,7 +51,7 @@ static char	*final_r(char *buf)
 	i = 0;
 	while (buf[i] && buf[i] != '\n')
 		i++;
-	str = (char *)malloc(i + 2);
+	str = (char *)ft_malloc(i + 2);
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -74,7 +73,6 @@ static char	*joinb(char *s1, char *s2)
 	char	*str;
 
 	str = ft_strjoin(s1, s2);
-	free(s1);
 	return (str);
 }
 
@@ -86,21 +84,21 @@ static char	*read_fd(int fd, char *buffer)
 	br = 1;
 	if (!buffer)
 	{
-		buffer = (char *)malloc(1);
+		buffer = (char *)ft_malloc(1);
 		buffer[0] = '\0';
 	}
-	tmp = (char *)malloc((size_t)BUFFER_SIZE + 1);
+	tmp = (char *)ft_malloc((size_t)BUFFER_SIZE + 1);
 	while (br > 0)
 	{
 		br = read(fd, tmp, BUFFER_SIZE);
 		if (br == -1)
-			return (free(buffer), free(tmp), NULL);
+			return ( NULL);
 		tmp[br] = '\0';
 		buffer = joinb(buffer, tmp);
 		if (ft_strchr(tmp, '\n'))
 			break ;
 	}
-	return (free(tmp), buffer);
+	return ( buffer);
 }
 
 char	*get_next_line(int fd)
@@ -109,7 +107,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (free(buf), buf = NULL, NULL);
+		return ( buf = NULL, NULL);
 	buf = read_fd(fd, buf);
 	if (!buf)
 		return (NULL);

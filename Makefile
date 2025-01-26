@@ -17,6 +17,7 @@ SRCS =  get_next_line/get_next_line.c \
 		main.c \
 		error/error.c \
 		start_game/cub3d.c \
+		start_game/textures.c \
 		start_game/minimap.c \
 		ray_cast/cast_rays.c \
 		rendering/render_wall.c \

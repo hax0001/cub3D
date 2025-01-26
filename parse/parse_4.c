@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:18:07 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/21 13:23:38 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:07:27 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	color_storer(t_data *data, char **map)
 	}
 	if (color_parse(data) == false)
 	{
-		printf("Error\nInvalid Colors\n");
+		ft_putstr_fd("Error\nInvalid Colors\n", 2);
 		return (false);
 	}
 	return (true);
@@ -64,9 +64,9 @@ bool	map_end(char *line)
 	char	**line_splite;
 
 	line_splite = ft_split(line, ' ');
-	if (!strcmp(line_splite[0], "F") || !strcmp(line_splite[0], "C")
-		|| !strcmp(line_splite[0], "SO") || !strcmp(line_splite[0], "NO")
-		|| !strcmp(line_splite[0], "WE") || !strcmp(line_splite[0], "EA"))
+	if (!ft_strcmp(line_splite[0], "F") || !ft_strcmp(line_splite[0], "C")
+		|| !ft_strcmp(line_splite[0], "SO") || !ft_strcmp(line_splite[0], "NO")
+		|| !ft_strcmp(line_splite[0], "WE") || !ft_strcmp(line_splite[0], "EA"))
 		return (true);
 	return (false);
 }
@@ -88,8 +88,7 @@ void	map_writer(t_data *data, char **map)
 		index--;
 	}
 	index++;
-	data->map = (char **)ft_malloc((ft_arg_count(map) - index)
-			* sizeof(char **));
+	data->map = (char **)ft_malloc((ft_arg_count(map) - index + 1) * sizeof(char *));
 	data->map[ft_arg_count(map) - index] = NULL;
 	while (map[index])
 		data->map[map_index++] = ft_strdup(map[index++]);

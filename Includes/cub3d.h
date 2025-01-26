@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/24 16:10:38 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:07:48 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-#define MINIMAP_SIZE 200  // Size of minimap in pixels
+#define MINIMAP_SIZE 400  // Size of minimap in pixels
 #define MINIMAP_SCALE 0.25 // Scale factor for minimap (1/5 of original size)
 #define MINIMAP_PADDING 3
 
@@ -64,6 +64,10 @@ typedef struct s_ray
     double  angle; // ray angle
     double  distance; // ray distance
     int     ray_f; // ray flag
+    double	horiz_x;
+	double	horiz_y;
+	double	vert_x;
+	double	vert_y;
     
 } t_ray ;
 
@@ -100,10 +104,10 @@ typedef struct s_data
     int              y_p_m; // y player position in map
     int              w_map; // width map
     int              h_map; // hight map
-    t_texture *north_tex;
-    t_texture *south_tex;
-    t_texture *east_tex;
-    t_texture *west_tex;
+    t_texture        *north_tex;
+    t_texture        *south_tex;
+    t_texture        *east_tex;
+    t_texture        *west_tex;
 } t_data ;
 
 
@@ -179,5 +183,6 @@ int	key_press(int keycode, void *info);
 void    ft_exit(void);
 int key_release(int keycode, void *info);
 void	mouve(t_global *global ,double mouve_x ,double mouve_y); 
+void load_textures(t_global *global);
 
 #endif

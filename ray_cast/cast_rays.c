@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:46:36 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/21 14:34:47 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 01:21:40 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ float get_horizontal_intersection(t_global *global, float angle)
         horiz_x += x_step;
         horiz_y += y_step;
     }
+    global->ray->horiz_x = horiz_x;
+    global->ray->horiz_y = horiz_y;
     return (sqrt(pow(horiz_x - global->player->x_p, 2) +
                  pow(horiz_y - global->player->y_p, 2)));
 }
@@ -122,6 +124,8 @@ float get_vertical_intersection(t_global *global, float angle)
         vert_x += x_step;
         vert_y += y_step;
     }
+    global->ray->vert_x = vert_x;
+    global->ray->vert_y = vert_y;
     return (sqrt(pow(vert_x - global->player->x_p, 2) +
                  pow(vert_y - global->player->y_p, 2)));
 }

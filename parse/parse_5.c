@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:18:13 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/21 13:24:15 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:57:33 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	is_valid_color(char *color_tmp)
 	color = ft_split(color_tmp, ',');
 	if (ft_arg_count(color) != 3 || color_tmp[ft_strlen(color_tmp) - 1] == ','
 		|| color_tmp[0] == ',')
-		return (ft_free_array(color), false);
+		return ( false);
 	color_num[0] = color[0];
 	color_num[1] = color[1];
 	color_num[2] = color[2];
@@ -45,9 +45,9 @@ bool	is_valid_color(char *color_tmp)
 		convert_color = ft_atoi(color[index++]);
 		if (convert_color >= 0 && convert_color <= 255)
 			continue ;
-		return (ft_free_array(color), false);
+		return ( false);
 	}
-	return (ft_free_array(color), true);
+	return ( true);
 }
 
 unsigned int	rgb_to_hex(int r, int g, int b)
@@ -79,12 +79,12 @@ bool	color_range_parse(t_data *data, char *floor_arg, char *ceiling_arg)
 	floor = ft_split(floor_arg, ' ');
 	ceiling = ft_split(ceiling_arg, ' ');
 	if (ft_arg_count(ceiling) != 2 || ft_arg_count(floor) != 2)
-		return (ft_free_array(ceiling), ft_free_array(floor), false);
+		return ( false);
 	if (in_range(floor[1]) == false || in_range(ceiling[1]) == false)
-		return (ft_free_array(ceiling), ft_free_array(floor), false);
+		return (false);
 	if (is_valid_color(floor[1]) == false
 		|| is_valid_color(ceiling[1]) == false)
-		return (ft_free_array(ceiling), ft_free_array(floor), false);
+		return ( false);
 	color_converter(data, floor[1], ceiling[1]);
 	return (true);
 }

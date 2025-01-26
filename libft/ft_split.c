@@ -6,22 +6,11 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 02:12:28 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/21 12:37:27 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:00:26 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char	**free_array(char **ptr, int i)
-{
-	while (i >= 0)
-	{
-		free(ptr[i]);
-		i--;
-	}
-	free(ptr);
-	return (0);
-}
 
 static int	ft_count_words(char const *str, char c)
 {
@@ -79,7 +68,7 @@ static char	**ft_split_words(char const *s, char c, char **s2, int num_words)
 		}
 		s2[word] = (char *)ft_malloc(sizeof(char) * (word_len + 1));
 		if (!s2)
-			return (free_array(s2, word));
+			return (0);
 		ft_putword(s2[word], s, i, word_len);
 		word_len = 0;
 		word++;

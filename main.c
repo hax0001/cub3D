@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:23:38 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/21 12:39:34 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 18:55:19 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,18 @@ void print_data(t_data *data)
 
 int main(int ac, char **av)
 {
-    t_global   *global;
+    t_global *global;
 
+    *get_heap() = NULL; // Initialize the static global pointer
     if (filename_check(ac, av) == false)
         return (2);
-    global = (t_global *)malloc(sizeof(t_global)); // this memory shoud freed manually with free function
+    global = (t_global *)ft_malloc(sizeof(t_global)); // Allocate memory for global
     ft_memset(global, 0, sizeof(t_global));
+    global->gar_co = NULL; // Initialize gar_co
     *get_heap() = global;
     if (parses_map(&global, global->data, av[1]) == false)
-        return (2);
+        return (ft_free_all(), 2);
     cub3d();
+    ft_free_all(); // Free all allocated memory
     return (0);
 }
