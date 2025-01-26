@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:03:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 19:52:28 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 23:09:26 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ t_texture  *get_texture_index(t_global *global)
 }
 
 
-void draw_wall(t_global *global, int ray, int t_pix, int b_pix) 
+void draw_wall(t_global *global, int ray, int t_pix, int b_pix ,int wall_h) 
 {
-    int tex_width = TILE_SIZE;  
-    int tex_height = TILE_SIZE;
+
 	int y;
 	int d;
     char *texture_data;
@@ -85,20 +84,19 @@ void draw_wall(t_global *global, int ray, int t_pix, int b_pix)
     texture_data = img->addr;
 
     if (global->ray->ray_f == 1) // Horizontal wall
-    	wall_x = global->ray->horiz_x;
+    	wall_x = (int)global->ray->horiz_x % TILE_SIZE;
 	else // Vertical wall
-    	wall_x = global->ray->vert_y;
-	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * tex_width);
-	if (tex_x < 0 || tex_x >= tex_width)
-    	tex_x = tex_width - 1;
+    	wall_x = (int)global->ray->vert_y % TILE_SIZE; 
+
+	tex_x = (int)(wall_x * img->width) / TILE_SIZE;
+
 	while (y < b_pix)
 	{
-        d = (y * 256 - S_H * 128 + (b_pix - t_pix) * 128);
-        tex_y = (d * tex_height) / (b_pix - t_pix) / 256;
-        if (tex_y < 0 || tex_y >= tex_height)
-            tex_y = tex_height - 1;
-        int color = *(int *)(texture_data + tex_y * img->line_length + tex_x * (img->bits_per_pixel / 8));
+        d = y + (wall_h / 2) -  S_H / 2;
+        tex_y = (d * img->height + wall_h / 2) / wall_h;
+        tex_y = tex_y % img->height;
+        int *addr = (int *)texture_data;
+        int color = addr[tex_y * img->width + tex_x];
         my_mlx_pixel_put(global, ray, y, color);
 	    y++;
 	}
@@ -120,7 +118,8 @@ void render_wall(int ray)
         b_pix = S_H;
     if (t_pix < 0)
         t_pix = 0;
-    draw_wall(global, ray, t_pix, b_pix);
+    
+    draw_wall(global, ray, t_pix, b_pix, wall_h);
     draw_floor_ceiling(global, ray, t_pix, b_pix); 
 }
 
