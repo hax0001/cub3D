@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:18:05 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/25 18:56:05 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:39:46 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ bool	border_check(char *line)
 	while (line_split[v_index])
 	{
 		if (line_split[v_index][0] != '1')
-			return ( false);
+			return (false);
 		if (line_split[v_index][ft_strlen(line_split[v_index]) - 1] != '1')
-			return ( false);
+			return (false);
 		v_index++;
 	}
-	return ( true);
+	return (true);
 }
 
 bool	map_border_check(char **map)

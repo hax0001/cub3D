@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 17:56:47 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/25 19:25:30 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:35:27 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ static char	*read_fd(int fd, char *buffer)
 	{
 		br = read(fd, tmp, BUFFER_SIZE);
 		if (br == -1)
-			return ( NULL);
+			return (NULL);
 		tmp[br] = '\0';
 		buffer = joinb(buffer, tmp);
 		if (ft_strchr(tmp, '\n'))
 			break ;
 	}
-	return ( buffer);
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return ( buf = NULL, NULL);
+		return (buf = NULL, NULL);
 	buf = read_fd(fd, buf);
 	if (!buf)
 		return (NULL);

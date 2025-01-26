@@ -20,6 +20,7 @@ SRCS =  get_next_line/get_next_line.c \
 		start_game/textures.c \
 		start_game/minimap.c \
 		ray_cast/cast_rays.c \
+		ray_cast/cast_rays_1.c \
 		rendering/render_wall.c \
 		mouvements/mouve.c \
 		parse/parse_1.c \

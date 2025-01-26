@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 19:27:14 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:47:41 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,5 +189,7 @@ void					ft_exit(void);
 int						key_release(int keycode, void *info);
 void					mouve(t_global *global, double mouve_x, double mouve_y);
 void					load_textures(t_global *global);
+int						unit_circle(float angle, char axis);
+float					nor_angle(float angle);
 
 #endif

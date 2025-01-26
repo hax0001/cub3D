@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:21:25 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/25 18:57:58 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:41:25 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ bool	texture_parse(t_data *data)
 	{
 		temp = ft_split(textures[i], ' ');
 		if (ft_arg_count(temp) != 2)
-			return ( false);
+			return (false);
 		if (file_check(temp[1]) == false)
-			return ( false);
+			return (false);
 		i++;
 	}
 	return (true);

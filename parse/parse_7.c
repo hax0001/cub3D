@@ -6,12 +6,11 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:21:36 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/25 20:01:40 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:41:50 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
-
 
 bool	write_map(char ***maps, char *FileName)
 {
@@ -31,14 +30,11 @@ bool	write_map(char ***maps, char *FileName)
 	while (str1)
 	{
 		tmp = ft_strjoin(str2, str1);
-		// free(str2);
 		str2 = tmp;
-		// free(str1);
 		str1 = get_next_line(fd);
 	}
 	close(fd);
 	*maps = ft_split(str2, '\n');
-	// free(str2);
 	return (true);
 }
 
