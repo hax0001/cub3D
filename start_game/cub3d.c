@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 00:12:11 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/27 00:47:11 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int	mouse_move(int x, int y, void *info)
 	if (x == old_x)
 		return (0);
 	else if (x < old_x)
-		global->player->r_f = 1;
-	else if (x > old_x)
 		global->player->r_f = -1;
+	else if (x > old_x)
+		global->player->r_f = 1;
 	old_x = x;
 	return (0);
 }
@@ -107,7 +107,7 @@ void cub3d(void)
         ft_error(ERR_MLX_INIT_FAILED);
     init_player();
     load_textures(global); // take
-    // mlx_hook(global->mlx_w, 6, 1L << 6, mouse_move, global);
+    mlx_hook(global->mlx_w, 6, 1L << 6, mouse_move, global);
     mlx_hook(global->mlx_w, 2, 1L<<0, key_press, global); 
     mlx_hook(global->mlx_w, 3, 1L<<1, key_release, global);  
     mlx_hook(global->mlx_w, 17, 0, (void *)ft_exit, NULL);   

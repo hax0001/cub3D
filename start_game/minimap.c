@@ -49,10 +49,9 @@ void draw_minimap_player(t_global *global)
     int i;
     int j;
 
-
     player_x = global->player->x_p * MINIMAP_SCALE;
     player_y = global->player->y_p * MINIMAP_SCALE;
-    player_size = 4;
+    player_size = 5;
     i = -player_size;
     while (i < player_size)
     {

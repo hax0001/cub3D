@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:03:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 00:08:47 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/27 01:00:01 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void draw_floor_ceiling(t_global *global, int ray, int t_pix, int b_pix)
  
 	i = b_pix;
 	while (i < S_H)
-		my_mlx_pixel_put(global, ray, i++, global->data->f_color);
+		my_mlx_pixel_put(global, ray, i++, global->data->c_color);
 	i = 0;
 	while (i < t_pix)
-		my_mlx_pixel_put(global, ray, i++, global->data->c_color);
+		my_mlx_pixel_put(global, ray, i++, global->data->f_color);
 }
 
 t_texture  *get_texture_index(t_global *global)
@@ -82,10 +82,9 @@ void draw_wall(t_global *global, int ray, int t_pix, int b_pix ,int wall_h)
 	y = t_pix;
     img = get_texture_index(global);
     texture_data = img->addr;
-
-    if (global->ray->ray_f == 1) // Horizontal wall
+    if (global->ray->ray_f == 1)
     	wall_x = (int)global->ray->horiz_x % TILE_SIZE;
-	else // Vertical wall
+	else
     	wall_x = (int)global->ray->vert_y % TILE_SIZE; 
 
 	tex_x = (int)(wall_x * img->width) / TILE_SIZE;
@@ -118,7 +117,6 @@ void render_wall(int ray)
         b_pix = S_H;
     if (t_pix < 0)
         t_pix = 0;
-    
     draw_wall(global, ray, t_pix, b_pix, wall_h);
     draw_floor_ceiling(global, ray, t_pix, b_pix); 
 }

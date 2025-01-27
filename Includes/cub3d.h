@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 22:35:42 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/27 00:57:28 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define MINIMAP_SCALE 0.25 // Scale factor for minimap (1/5 of original size)
 # define MINIMAP_PADDING 3
 
-# define S_W 1900      // wndow width
-# define S_H 1000      // window height
+# define S_W 1500      // wndow width
+# define S_H 900      // window height
 # define TILE_SIZE 30  // size of tile
 # define FOV 70        // field of vew
 # define R_SPEED 0.020 // rottion speed
