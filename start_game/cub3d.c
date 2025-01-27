@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 00:47:11 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/27 22:15:42 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ void    ft_exit(void)
     t_global    *global;
 
     global = *get_heap();
+    mlx_destroy_image(global->mlx_p, global->data->north_tex->img);    
+    mlx_destroy_image(global->mlx_p, global->data->south_tex->img);
+    mlx_destroy_image(global->mlx_p,  global->data->east_tex->img); 
+    mlx_destroy_image(global->mlx_p,  global->data->west_tex->img);
     mlx_destroy_window(global->mlx_p,  global->mlx_w);   
     mlx_destroy_image(global->mlx_p,  global->mlx_image);
     mlx_destroy_display(global->mlx_p);
+    free(global->mlx_p);
     ft_free_all();
     exit(1);
     // free(global);
@@ -29,7 +34,6 @@ int play(void *info)
 {
     t_global *global;
     
-    int flg = 1;
     global = (t_global *)info;
     if (!global || !global->mlx_image)
         return (1);
@@ -106,8 +110,8 @@ void cub3d(void)
     if (!global->mlx_image)
         ft_error(ERR_MLX_INIT_FAILED);
     init_player();
-    load_textures(global); // take
-    mlx_hook(global->mlx_w, 6, 1L << 6, mouse_move, global);
+    load_textures(global);
+    mlx_hook(global->mlx_w, 6, 1L<<6, mouse_move, global); 
     mlx_hook(global->mlx_w, 2, 1L<<0, key_press, global); 
     mlx_hook(global->mlx_w, 3, 1L<<1, key_release, global);  
     mlx_hook(global->mlx_w, 17, 0, (void *)ft_exit, NULL);   

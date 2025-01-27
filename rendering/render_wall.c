@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:03:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 01:00:01 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/27 21:57:20 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,55 +49,68 @@ void draw_floor_ceiling(t_global *global, int ray, int t_pix, int b_pix)
 		my_mlx_pixel_put(global, ray, i++, global->data->f_color);
 }
 
-t_texture  *get_texture_index(t_global *global)
+t_texture	*get_texture_index(t_global *global)
 {
-    if (global->ray->ray_f == 1)
-    {
-        if (global->ray->angle >= 0 && global->ray->angle <= M_PI)
-            return global->data->south_tex;
-        else
-            return global->data->north_tex;
-    }
-    else 
-    {
-        if (global->ray->angle > M_PI / 2 && global->ray->angle <=  3 * M_PI / 2)
-            return global->data->west_tex;
-        else
-            return global->data->east_tex;
-    }
+	float	angle;
+
+	angle = global->ray->angle;
+	while (angle < 0)
+		angle += 2 * M_PI;
+	while (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	if (global->ray->ray_f == 1)
+	{
+		if (angle > M_PI && angle < 2 * M_PI)
+			return (global->data->north_tex);
+		else
+			return (global->data->south_tex);
+	}
+	else
+	{
+		if (angle > M_PI / 2 && angle < 3 * M_PI / 2)
+			return (global->data->west_tex);
+		else
+			return (global->data->east_tex);
+	}
 }
 
 
-void draw_wall(t_global *global, int ray, int t_pix, int b_pix ,int wall_h) 
+void	draw_wall(t_global *global, int ray, int t_pix, int b_pix, int wall_h)
 {
-
-	int y;
-	int d;
-    char *texture_data;
-    int tex_x, tex_y;
-    int wall_x;
-    t_texture *img;
-
+	int			y;
+	int			d;
+	int			tex_x;
+	int			tex_y;
+	int			wall_x;
+	t_texture	*img;
+	char		*texture_data;
+	int			*addr;
+	int			color;
 
 	y = t_pix;
-    img = get_texture_index(global);
-    texture_data = img->addr;
-    if (global->ray->ray_f == 1)
-    	wall_x = (int)global->ray->horiz_x % TILE_SIZE;
+	img = get_texture_index(global);
+	texture_data = img->addr;
+	if (global->ray->ray_f == 1)
+		wall_x = global->ray->horiz_x - (int)(global->ray->horiz_x / TILE_SIZE) * TILE_SIZE;
 	else
-    	wall_x = (int)global->ray->vert_y % TILE_SIZE; 
-
-	tex_x = (int)(wall_x * img->width) / TILE_SIZE;
-
+		wall_x = global->ray->vert_y - (int)(global->ray->vert_y / TILE_SIZE) * TILE_SIZE;
+	tex_x = (int)(wall_x * img->width / TILE_SIZE);
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= img->width)
+		tex_x = img->width - 1;
 	while (y < b_pix)
 	{
-        d = y + (wall_h / 2) -  S_H / 2;
-        tex_y = (d * img->height + wall_h / 2) / wall_h;
-        tex_y = tex_y % img->height;
-        int *addr = (int *)texture_data;
-        int color = addr[tex_y * img->width + tex_x];
-        my_mlx_pixel_put(global, ray, y, color);
-	    y++;
+		d = y + (wall_h / 2) - S_H / 2;
+		tex_y = (d * img->height) / wall_h;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= img->height)
+			tex_y = img->height - 1;
+		addr = (int *)texture_data;
+		color = addr[tex_y * img->width + tex_x];
+		my_mlx_pixel_put(global, ray, y, color);
+		y++;
 	}
 }
 

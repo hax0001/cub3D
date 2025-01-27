@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 00:57:28 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/27 22:14:36 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define S_W 1500      // wndow width
 # define S_H 900      // window height
 # define TILE_SIZE 30  // size of tile
-# define FOV 70        // field of vew
+# define FOV 60        // field of vew
 # define R_SPEED 0.020 // rottion speed
 # define P_SPEED 2     //player speed
 
@@ -121,7 +121,6 @@ typedef struct s_global
 	void		*mlx_p;
 	void		*mlx_w;
 	void		*mlx_image;
-	void		*mlx_image2;
 	t_list		*gar_co;
 	t_data		*data;
 	t_ray		*ray;

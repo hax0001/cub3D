@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:21:36 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/26 19:41:50 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:58:47 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,21 @@ void	skipper(char *line, int *c_index, int *end_index)
 	(*end_index) = index;
 }
 
+bool	null_checker(t_data *data)
+{
+	if (data->no == NULL || data->ea == NULL || data->we == NULL
+		|| data->so == NULL)
+		return (false);
+	return (true);
+}
+
 bool	id_type_parse(t_data *data)
 {
 	int	c_index;
 	int	end_index;
 
+	if (null_checker(data) == false)
+		return (false);
 	skipper(data->no, &c_index, &end_index);
 	if (ft_strncmp(data->no, "NO", end_index) != 0)
 		return (false);

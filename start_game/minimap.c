@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 01:55:44 by akajjou           #+#    #+#             */
+/*   Updated: 2025/01/27 19:15:41 by akajjou          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/cub3d.h"
 
 void draw_minimap_pixel(t_global *global, int x, int y, int color)
@@ -60,38 +72,6 @@ void draw_minimap_player(t_global *global)
         {
             if (i * i + j * j <= player_size * player_size)
                 draw_minimap_pixel(global, player_x + i, player_y + j, 0xED4C67);
-            j++;
-        }
-        i++;
-    }
-}
-
-void draw_minimap_background(t_global *global)
-{
-    int      size;
-    int      i;
-    int      j;
-    int      h;
-    int      k;
-    int      r;
-    char     *dst;
-
-    size = MINIMAP_SIZE + (MINIMAP_PADDING * 2);
-    r = MINIMAP_SIZE / 2;
-    h = r + MINIMAP_PADDING;
-    k = S_H - r - MINIMAP_PADDING;
-    i = h - r - MINIMAP_PADDING;
-    while (i < h + r + MINIMAP_PADDING)
-    {
-        j = k - r - MINIMAP_PADDING;
-        while (j < k + r + MINIMAP_PADDING)
-        {
-            if ((i - h) * (i - h) + (j - k) * (j - k) <= r * r)
-            {
-                dst = mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0}, &(int){0});
-                dst = dst + (j * S_W * 4 + i * 4);
-                *(unsigned int *)dst = 0x3799;
-            }
             j++;
         }
         i++;
