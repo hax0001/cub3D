@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 22:14:36 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/28 01:11:13 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
-# include "collors.h"
 # include "mlx.h"
 # include <math.h>
 # include <stdbool.h>
@@ -191,5 +190,6 @@ void					mouve(t_global *global, double mouve_x, double mouve_y);
 void					load_textures(t_global *global);
 int						unit_circle(float angle, char axis);
 float					nor_angle(float angle);
+void					ft_cast_ray(t_global *global, int horiz_dist);
 
 #endif

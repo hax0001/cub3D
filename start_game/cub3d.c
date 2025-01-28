@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 22:15:42 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/28 01:49:24 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void    ft_exit(void)
     free(global->mlx_p);
     ft_free_all();
     exit(1);
-    // free(global);
 }
 
 int play(void *info)
@@ -111,7 +110,7 @@ void cub3d(void)
         ft_error(ERR_MLX_INIT_FAILED);
     init_player();
     load_textures(global);
-    mlx_hook(global->mlx_w, 6, 1L<<6, mouse_move, global); 
+    // mlx_hook(global->mlx_w, 6, 1L<<6, mouse_move, global); 
     mlx_hook(global->mlx_w, 2, 1L<<0, key_press, global); 
     mlx_hook(global->mlx_w, 3, 1L<<1, key_release, global);  
     mlx_hook(global->mlx_w, 17, 0, (void *)ft_exit, NULL);   

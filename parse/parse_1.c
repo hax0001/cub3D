@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:16:59 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/27 19:22:18 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/28 01:01:24 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	w_h_store(t_data *data, char **map)
 bool	map_check(t_data *data, char **map)
 {
 	map_writer(data, map);
+	if (ft_arg_count(data->map) <= 2)
+		return (false);
 	if (map_characters_check(data->map) == false)
 		return (false);
 	if (map_border_check(data->map) == false)

@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 01:55:44 by akajjou           #+#    #+#             */
-/*   Updated: 2025/01/27 19:15:41 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/28 01:49:49 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void draw_minimap_pixel(t_global *global, int x, int y, int color)
     if (screen_x < MINIMAP_PADDING || screen_x >= MINIMAP_SIZE + MINIMAP_PADDING || 
         screen_y < MINIMAP_PADDING || screen_y >= MINIMAP_SIZE + MINIMAP_PADDING)
         return;
-
     dst = mlx_get_data_addr(global->mlx_image, &bits_per_pixel, &line_length, &endian);
     dst = dst + (screen_y * line_length + screen_x * (bits_per_pixel / 8));
     *(unsigned int *)dst = color;

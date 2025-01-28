@@ -6,32 +6,11 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:18:15 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/27 22:37:38 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/28 01:02:20 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
-
-bool	ft_no_wall(int y, int x, t_global *global)
-{
-	if ((global->data->map[y][x + 1] == '1'   	//  111111
-		&& global->data->map[y - 1][x] == '1') )	//  111111
-		return (false);
-	if ((global->data->map[y][x + 1] == '1'   	//  111111
-		&& global->data->map[y + 1][x] == '1') )	//  111111
-		return (false);
-	if ((global->data->map[y][x - 1] == '1'   	//  111111
-		&& global->data->map[y - 1][x] == '1') )	//  111111
-		return (false);
-	if ((global->data->map[y][x - 1] == '1'   	//  111111
-		&& global->data->map[y + 1][x] == '1') )	//  111111
-		return (false);
-
-
-	
-	return (true);
-}
-
 
 void	mouve_player(t_global *global, double move_x, double move_y)
 {
@@ -49,8 +28,7 @@ void	mouve_player(t_global *global, double move_x, double move_y)
 		return ;
 	if (global->data->map[map_y]
 		&& map_x < (int)ft_strlen(global->data->map[map_y])
-		&& global->data->map[map_y][map_x] != '1' 
-		&& ft_no_wall(map_y, map_x, global) == true)
+		&& global->data->map[map_y][map_x] != '1')
 	{
 		global->player->x_p = new_x;
 		global->player->y_p = new_y;
