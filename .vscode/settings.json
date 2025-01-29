@@ -2,6 +2,13 @@
     "files.associations": {
         "error.h": "c",
         "cub3d.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "stdbool.h": "c",
+        "math.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "get_next_line.h": "c",
+        "string.h": "c",
+        "collors.h": "c"
     }
 }

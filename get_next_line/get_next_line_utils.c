@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 17:56:12 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/12/21 10:01:37 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:37:27 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strdup(const char *s)
 		len++;
 		i++;
 	}
-	d = malloc(len + 1);
+	d = ft_malloc(len + 1);
 	if (!d)
 		return (NULL);
 	ft_memmove(d, s, len + 1);
@@ -86,7 +86,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s1_len = ft_strlen((char *)s1);
 	s2_len = ft_strlen(s2);
 	stot_len = s1_len + s2_len + 1;
-	str = malloc(sizeof(char) * stot_len);
+	str = ft_malloc(sizeof(char) * stot_len);
 	if (!str)
 		return (0);
 	ft_memmove(str, s1, s1_len);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 17:26:30 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/12/25 19:07:24 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:38:14 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdio.h>
 # include <stdint.h>
 
+void	*ft_malloc(size_t size);
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dest, const void *src, size_t n);

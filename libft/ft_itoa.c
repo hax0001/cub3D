@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:57:19 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/11/24 02:51:11 by hax              ###   ########.fr       */
+/*   Updated: 2025/01/21 12:37:27 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_itoa(int n)
 	unsigned int	len;
 
 	len = nlen(n);
-	s = (char *)malloc(sizeof(char) * len + 1);
+	s = (char *)ft_malloc(sizeof(char) * len + 1);
 	if (!s)
 		return (NULL);
 	minint(s, &n);

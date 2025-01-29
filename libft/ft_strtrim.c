@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 02:11:46 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/11/30 18:01:17 by nait-bou         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:37:27 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i++;
 	while (i < j && ft_strchr(set, s1[j]) != NULL)
 		j--;
-	new_str = (char *)malloc((j - i + 2) * sizeof(char));
+	new_str = (char *)ft_malloc((j - i + 2) * sizeof(char));
 	if (!new_str)
 		return (NULL);
 	ft_strlcpy(new_str, s1 + i, j - i + 2);

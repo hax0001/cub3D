@@ -5,8 +5,8 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-MLX = libmlx_Linux.a  -lXext -lX11 -lm -lbsd
+CFLAGS = -Wall -Wextra -Werror 
+MLX =  -lmlx -L/usr/lib -lX11 -lXext -lm
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -15,10 +15,22 @@ SRCS =  get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 		gar_co/gar_co.c \
 		main.c \
-		parse/parse_map.c \
 		error/error.c \
 		start_game/cub3d.c \
+		start_game/textures.c \
+		start_game/minimap.c \
 		ray_cast/cast_rays.c \
+		ray_cast/cast_rays_1.c \
+		rendering/render_wall.c \
+		mouvements/mouve.c \
+		parse/parse_1.c \
+		parse/parse_2.c \
+		parse/parse_3.c \
+		parse/parse_4.c \
+		parse/parse_5.c \
+		parse/parse_6.c \
+		parse/parse_7.c
+
 
 OBJS = $(SRCS:.c=.o)
 
