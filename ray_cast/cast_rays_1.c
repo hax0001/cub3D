@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:46:36 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/28 01:12:48 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/29 01:31:57 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,37 @@ int	unit_circle(float angle, char axis)
 	return (angle > M_PI / 2 && angle < 3 * M_PI / 2);
 }
 
-void	ft_cast_ray(t_global *global, int horiz_dist)
+void	draw_floor_ceiling(t_global *global, int ray, int t_pix, int b_pix)
+{
+	int	i;
+
+	i = b_pix;
+	while (i < S_H)
+		my_mlx_pixel_put(global, ray, i++, global->data->c_color);
+	i = 0;
+	while (i < t_pix)
+		my_mlx_pixel_put(global, ray, i++, global->data->f_color);
+}
+
+void	ft_exit(void)
+{
+	t_global	*global;
+
+	global = *get_heap();
+	mlx_destroy_image(global->mlx_p, global->data->north_tex->img);
+	mlx_destroy_image(global->mlx_p, global->data->south_tex->img);
+	mlx_destroy_image(global->mlx_p, global->data->east_tex->img);
+	mlx_destroy_image(global->mlx_p, global->data->west_tex->img);
+	mlx_destroy_window(global->mlx_p, global->mlx_w);
+	mlx_destroy_image(global->mlx_p, global->mlx_image);
+	mlx_destroy_display(global->mlx_p);
+	free(global->mlx_p);
+	ft_free_all();
+	exit(1);
+}
+
+void	norm(t_global *global, double x)
 {
 	global->ray->ray_f = 1;
-	global->ray->distance = horiz_dist;
+	global->ray->distance = x;
 }

@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:54:06 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/29 02:19:31 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/29 02:12:11 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	play(void *info)
 	if (!global || !global->mlx_image)
 		return (1);
 	ft_memset(mlx_get_data_addr(global->mlx_image, &(int){0}, &(int){0},
-			&(int){0}), 0, S_W * S_H * 4);
+				&(int){0}), 0, S_W * S_H * 4);
 	cast_rays();
 	draw_minimap(global);
 	mouve(global, 0, 0);
 	mlx_put_image_to_window(global->mlx_p, global->mlx_w, global->mlx_image, 0,
-		0);
+			0);
 	return (0);
 }
 
@@ -60,15 +60,15 @@ int	mouse_move(int x, int y, void *info)
 {
 	t_global	*global;
 	double		rotation_speed;
-	static int	old_x = S_W / 2;
 
+	static int old_x = S_W / 2; // Store previous mouse x-position
 	global = (t_global *)info;
-	rotation_speed = 0.005;
+	rotation_speed = 0.005; // Adjust rotation speed as needed
 	wrap_mouse_position(global, x, y);
-	if (x != old_x)
+	if (x != old_x) // Only rotate if the mouse moves horizontally
 	{
 		global->player->angle += (x - old_x) * rotation_speed;
-		old_x = x;
+		old_x = x; // Update old_x to the new mouse position
 	}
 	if (global->player->angle < 0)
 		global->player->angle += 2 * M_PI;

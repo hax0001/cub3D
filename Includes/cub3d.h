@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:30:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/28 01:11:13 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/29 01:34:45 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
-# include "mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -94,7 +94,7 @@ typedef struct s_draw_info
 
 typedef struct s_data
 {
-	bool				flag;
+	bool			flag;
 	char			**map;
 	char			*no;
 	char			*so;
@@ -109,6 +109,8 @@ typedef struct s_data
 	int				y_p_m;
 	int				w_map;
 	int				h_map;
+	double			wall_h;
+	int				color;
 	t_texture		*north_tex;
 	t_texture		*south_tex;
 	t_texture		*east_tex;
@@ -124,6 +126,8 @@ typedef struct s_global
 	t_data		*data;
 	t_ray		*ray;
 	t_player	*player;
+	t_texture	*img;
+
 }						t_global;
 
 //******************gar_co && memory******************* */
@@ -190,6 +194,10 @@ void					mouve(t_global *global, double mouve_x, double mouve_y);
 void					load_textures(t_global *global);
 int						unit_circle(float angle, char axis);
 float					nor_angle(float angle);
-void					ft_cast_ray(t_global *global, int horiz_dist);
+void					draw_floor_ceiling(t_global *global, int ray,
+							int t_pix, int b_pix);
+void					my_mlx_pixel_put(t_global *global, int x,
+							int y, int color);
+void					norm(t_global *global, double x);
 
 #endif

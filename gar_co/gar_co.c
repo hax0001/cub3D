@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:43:43 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/26 19:17:58 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/29 01:33:55 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_allocation	*g_allocations = NULL;
 
 void	*ft_malloc(size_t size)
 {
-	void		*ptr;
+	void			*ptr;
 	t_allocation	*new_alloc;
 
 	ptr = malloc(size);

@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:46:36 by nait-bou          #+#    #+#             */
-/*   Updated: 2025/01/28 01:12:38 by akajjou          ###   ########.fr       */
+/*   Updated: 2025/01/29 01:30:46 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	cast_rays(void)
 		if (vert_dist <= horiz_dist)
 			global->ray->distance = vert_dist;
 		else
-			ft_cast_ray(global, horiz_dist);
+			norm(global, horiz_dist);
 		render_wall(ray);
 		global->ray->angle += global->player->fov / S_W;
 		ray++;
