@@ -86,6 +86,24 @@ Map rules enforced by parser:
 - Texture files must exist and use `.xpm`
 - Colors must be valid RGB triplets in the `0-255` range
 
+### Example of a simple `.cub` file:
+
+```text
+NO textures/wolfenstein/grey_stone.xpm
+SO textures/wolfenstein/purple_stone.xpm
+WE textures/wolfenstein/red_brick.xpm
+EA textures/wolfenstein/wood.xpm
+
+F 220,100,0
+C 225,30,0
+
+1111111
+1000001
+1011101
+1000N01
+1111111
+```
+
 ## Useful Make Targets
 
 ```bash
