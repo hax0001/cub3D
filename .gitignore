@@ -1,0 +1,35 @@
+# Binaries
+cub3d
+cub2/cub3d
+a.out
+
+# C build artifacts
+*.o
+*.a
+*.so
+*.out
+*.dSYM/
+
+# Static libraries produced by libft
+libft/libft.a
+cub2/libft/libft.a
+
+# Coverage and profiling
+*.gcda
+*.gcno
+*.gcov
+gmon.out
+
+# Logs and crash dumps
+*.log
+vgcore.*
+valgrind*.txt
+
+# Editor and OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
