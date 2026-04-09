@@ -1,0 +1,17 @@
+# Build artifacts
+*.o
+*.a
+cub3d
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
